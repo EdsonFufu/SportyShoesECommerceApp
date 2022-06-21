@@ -1,0 +1,520 @@
+<!DOCTYPE HTML>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{fragments/main}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spoty Shoe E-Commerce WebApp</title>
+</head>
+
+<body>
+<div class="page-wrapper" layout:fragment="content">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://thumbs.dreamstime.com/z/trail-desert-run-running-shoes-runners-banner-trail-desert-run-running-shoes-legs-runners-training-outdoors-banner-panorama-221613601.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Trail desert run running shoes legs of runners training outdoors. </h5>
+                    <p> Banner panorama of couple training in nature working out cardio, athletic lifestyle. Fitness sport concept.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://thumbs.dreamstime.com/z/runners-training-trail-running-fast-desert-landscape-panoramic-banner-couple-athletes-summer-outdoor-sport-runners-training-231338401.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Man and woman working out together.</h5>
+                    <p>Runners training trail running fast in desert landscape panoramic banner. Couple of athletes summer outdoor sport workout. </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://thumbs.dreamstime.com/z/green-smoothie-runner-fitness-woman-banner-green-smoothie-runner-fitness-woman-banner-panorama-crop-person-tying-running-shoes-208070742.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Green smoothie runner fitness woman banner.</h5>
+                    <p> Panorama crop of person tying running shoes at beach workout. Healthy lifestyle detox weight loss girl lacing trainers.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://thumbs.dreamstime.com/z/runners-couple-tying-running-shoes-to-run-banner-runner-women-athlete-men-lacing-shoe-laces-park-healthy-lifestyle-jogging-194009480.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Runners couple tying running shoes to run banner</h5>
+                    <p>Runner women and athlete men lacing shoe laces at park. Healthy lifestyle jogging motivation, happy healthy people. Horizontal landscape crop.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://thumbs.dreamstime.com/z/exercise-sport-running-shoes-runner-woman-tying-laces-getting-ready-summer-run-forest-park-panoramic-banner-header-crop-226899054.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Jogging girl exercise motivation heatlhy fit living.</h5>
+                    <p>Exercise and sport running shoes runner woman tying laces getting ready for summer run in forest park panoramic banner header crop. </p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <section id="about-section" class="pt-5 pb-5">
+        <div class="container wrapabout">
+            <div class="red"></div>
+            <div class="row">
+                <div class="col-lg-6 align-items-center justify-content-left d-flex mb-5 mb-lg-0">
+                    <div class="blockabout">
+                        <div class="blockabout-inner text-center text-sm-start">
+                            <div class="title-big pb-3 mb-3">
+                                <h3>ABOUT US</h3>
+                            </div>
+                            <p class="description-p text-muted pe-0 pe-lg-0">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quas optio reiciendis deleniti voluptatem facere sequi, quia, est sed dicta aliquid quidem facilis culpa iure perferendis? Dolor ad quia deserunt.
+                            </p>
+                            <p class="description-p text-muted pe-0 pe-lg-0">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quas optio reiciendis deleniti voluptatem facere.Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quas optio reiciendis deleniti voluptatem facere.
+                            </p>
+                            <p class="description-p text-muted pe-0 pe-lg-0">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quas optio reiciendis deleniti voluptatem facere.Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quas optio reiciendis deleniti voluptatem facere.
+                            </p>
+                            <div class="sosmed-horizontal pt-3 pb-3">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                            </div>
+                            <a href="#" class="btn rey-btn mt-3">See More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <figure class="potoaboutwrap">
+                        <img src="https://st3.depositphotos.com/7247698/18888/i/450/depositphotos_188885346-stock-photo-sport-shoes-art-design-banner.jpg" alt="potoabout" width="100%" />
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="clear"></div>
+
+    <section class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="mb-3">Carousel cards title </h3>
+                </div>
+                <div class="col-6 text-right">
+                    <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                        <i class="fa fa-arrow-left"></i>
+                    </a>
+                    <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="col-12">
+                    <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="row">
+
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532781914607-2031eca2f00d?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=7c625ea379640da3ef2e24f20df7ce8d">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=42b2d9ae6feb9c4ff98b9133addfb698">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row">
+
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532715088550-62f09305f765?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=ebadb044b374504ef8e81bdec4d0e840">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=0754ab085804ae8a3b562548e6b4aa2e">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="row">
+
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=ee8417f0ea2a50d53a12665820b54e23">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532777946373-b6783242f211?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=8ac55cf3a68785643998730839663129">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532763303805-529d595877c5?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=5ee4fd5d19b40f93eadb21871757eda6">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Special title treatment</h4>
+                                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+
+        <div class="spacer"></div>
+
+        <!-- header -->
+        <div class="ui container pad-top-30 pad-bottom-30">
+            <div class="center aligned segment">
+                <div class="ui horizontal divider">Monthly Specials</div>
+            </div>
+        </div>
+
+        <div class="spacer"></div>
+
+        <!-- cards -->
+        <div class="ui container">
+            <div class="ui four column grid">
+                <div class="row">
+                    <div class="column">
+                        <div class="ui card">
+                            <div class="image">
+                                <a class="ui red right ribbon label">-50%</a>
+                                <img src="https://mrpg.scene7.com/is/image/MRP/01_1104170929_SI_11?wid=360&hei=540&qlt=80" />
+                            </div>
+                            <div class="content">
+                                <a class="header">Denim Dress</a>
+                                <div class="description">
+                                    Nec vestibulum eget augue sit vel varius, lacus sem.
+                                </div>
+                            </div>
+                            <div class="extra content">
+                                <a class="ui teal tag label">R500</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui card">
+                            <div class="image">
+                                <a class="ui red right ribbon label">-50%</a>
+                                <img src="https://mrpg.scene7.com/is/image/MRP/01_1100211387_SI_11?wid=360&hei=540&qlt=80" />
+                            </div>
+                            <div class="content">
+                                <a class="header">Patterned Tunic</a>
+                                <div class="description">
+                                    Nec vestibulum eget augue sit vel varius, lacus sem.
+                                </div>
+                            </div>
+                            <div class="extra content">
+                                <a class="ui teal tag label">R460</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui card">
+                            <div class="image">
+                                <a class="ui red right ribbon label">-50%</a>
+                                <img src="https://mrpg.scene7.com/is/image/MRP/01_1110210428_SI_11?wid=360&hei=540&qlt=80" />
+                            </div>
+                            <div class="content">
+                                <a class="header">Yellow Floral Dress</a>
+                                <div class="description">
+                                    Nec vestibulum eget augue sit vel varius, lacus sem.
+                                </div>
+                            </div>
+                            <div class="extra content">
+                                <a class="ui teal tag label">R780</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui card">
+                            <div class="image">
+                                <a class="ui red right ribbon label">-50%</a>
+                                <img src="https://mrpg.scene7.com/is/image/MRP/01_1150210826_SI_11?wid=360&hei=540&qlt=80" />
+                            </div>
+                            <div class="content">
+                                <a class="header">Maroon Bodycon Dress</a>
+                                <div class="description">
+                                    Nec vestibulum eget augue sit vel varius, lacus sem.
+                                </div>
+                            </div>
+                            <div class="extra content">
+                                <a class="ui teal tag label">R300</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="spacer"></div>
+
+        <p>images from Mrprice.com website</p>
+
+        <h3 class="mb-3 fa-newspaper">New Arrival Products</h3>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-3 mb-2-6">
+                    <div class="card-wrapper mb-4">
+                        <div class="card-img"><img src="https://via.placeholder.com/240x240/FFB6C1/000000" alt="..."></div>
+                        <div class="card-body">
+                            <div>
+                                <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="h5 mb-2"><a href="#" class="text-secondary">Hand Gloves</a></h4>
+                        <div class="product-rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star mr-0"></i>
+                        </div>
+                        <h5 class="mb-0 text-primary">$11.79</h5>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 mb-2-6">
+                    <div class="card-wrapper mb-4">
+                        <div class="card-img"><img src="https://via.placeholder.com/240x240/20B2AA/000000" alt="..."></div>
+                        <div class="card-body">
+                            <div>
+                                <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="h5 mb-2"><a href="#" class="text-secondary">Products Bag</a></h4>
+                        <div class="product-rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star mr-0"></i>
+                        </div>
+                        <h5 class="mb-0 text-primary">$79.00</h5>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 mb-2-6">
+                    <div class="card-wrapper mb-4">
+                        <div class="card-img"><img src="https://via.placeholder.com/240x240/FFB6C1/000000" alt="..."></div>
+                        <div class="card-body">
+                            <div>
+                                <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="h5 mb-2"><a href="#" class="text-secondary">Cleaning Equipment</a></h4>
+                        <div class="product-rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star mr-0"></i>
+                        </div>
+                        <h5 class="mb-0 text-primary">$19.22</h5>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 mb-2-6">
+                    <div class="card-wrapper mb-4">
+                        <div class="card-img"><img src="https://via.placeholder.com/240x240/87CEFA/000000" alt="..."></div>
+                        <div class="card-body">
+                            <div>
+                                <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="h5 mb-2"><a href="#" class="text-secondary">Washing Liquids</a></h4>
+                        <div class="product-rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star mr-0"></i>
+                        </div>
+                        <h5 class="mb-0 text-primary">$28.25</h5>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 mb-2-6 mb-lg-0">
+                    <div class="card-wrapper mb-4">
+                        <div class="card-img"><img src="https://via.placeholder.com/240x240/7B68EE/000000" alt="..."></div>
+                        <div class="card-body">
+                            <div>
+                                <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="h5 mb-2"><a href="#" class="text-secondary">Vacuum Cleaner</a></h4>
+                        <div class="product-rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star mr-0"></i>
+                        </div>
+                        <h5 class="mb-0 text-primary">$129.79</h5>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="https://via.placeholder.com/240x240/BA55D3/000000" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 mb-2-6 mb-lg-0">
+                    <div class="card-wrapper mb-4">
+                        <div class="card-img"><img src="https://via.placeholder.com/240x240/BA55D3/000000" alt="..."></div>
+                        <div class="card-body">
+                            <div>
+                                <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="h5 mb-2"><a href="#" class="text-secondary">Rubber Gloves</a></h4>
+                        <div class="product-rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star mr-0"></i>
+                        </div>
+                        <h5 class="mb-0 text-primary">$44.42</h5>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 mb-2-6 mb-sm-0">
+                    <div class="card-wrapper mb-4">
+                        <div class="card-img"><img src="https://via.placeholder.com/240x240/48D1CC/000000" alt="..."></div>
+                        <div class="card-body">
+                            <div>
+                                <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="h5 mb-2"><a href="#" class="text-secondary">Rubber Gloves</a></h4>
+                        <div class="product-rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star mr-0"></i>
+                        </div>
+                        <h5 class="mb-0 text-primary">$24.69</h5>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card-wrapper mb-4">
+                        <div class="card-img"><img src="https://via.placeholder.com/240x240/000080/000000" alt="..."></div>
+                        <div class="card-body">
+                            <div>
+                                <a href="#"><i class="bg-white p-3 rounded-circle ti-shopping-cart font-weight-600"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="h5 mb-2"><a href="#" class="text-secondary">Cleaning Supplies</a></h4>
+                        <div class="product-rating mb-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star mr-0"></i>
+                        </div>
+                        <h5 class="mb-0 text-primary">$79.79</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

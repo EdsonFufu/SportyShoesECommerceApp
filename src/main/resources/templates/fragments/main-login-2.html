@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/assets/images/favicon.png}">
+
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">GWX PORTAL</title>
+    <!-- Bootstrap Core CSS -->
+    <link th:href="@{/assets/plugins/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link th:href="@{/css/login-2-style.css}" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link th:href="@{/css/colors/blue.css}" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]> -->
+<!--    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
+<!--    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
+    <!--<![endif]-->
+
+</head>
+
+<body>
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<!-- form section start -->
+<section  class="w3l-workinghny-form">
+    <!-- /form -->
+    <div class="workinghny-form-grid">
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+
+    <div class="wrapper" id="wrapper" layout:fragment="content">
+
+    </div>
+    </div>
+    <!-- //form -->
+    <!-- copyright-->
+    <div class="copyright text-center">
+        <div class="wrapper">
+            <p class="copy-footer-29">© 2021 All rights reserved</p>
+        </div>
+    </div>
+    <!-- //copyright-->
+</section>
+<!-- //form section start -->
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script th:src="@{/assets/plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script th:src="@{/assets/plugins/bootstrap/js/popper.min.js}"></script>
+<script th:src="@{/assets/plugins/bootstrap/js/bootstrap.min.js}"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script th:src="@{/js/jquery.slimscroll.js}"></script>
+<!--Wave Effects -->
+<script th:src="@{/js/waves.js}"></script>
+
+</body>
+
+</html>

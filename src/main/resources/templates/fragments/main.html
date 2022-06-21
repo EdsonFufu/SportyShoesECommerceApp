@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Spoty Shoe E-Commerce WebApp</title>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/all.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/main.css}"/>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css" rel="stylesheet" id="bootstrap-css"/>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<main role="main" class="container">
+
+    <header class="topbar" th:replace="~{fragments/header :: header}">
+
+    </header>
+    <h3>Spoty Shoe E-Commerce WebApp</h3>
+    <h6>
+        <span th:text="'Hello, ' + ${message}"></span>
+    </h6>
+    <div class="page-wrapper" layout:fragment="content">
+
+
+    </div>
+
+    <!--    <ol>-->
+    <!--        <li th:each="task : ${tasks}" th:text="${task}"></li>-->
+    <!--    </ol>-->
+
+    <section class="footer"  th:replace="~{fragments/footer :: footer}">
+
+    </section>
+
+</main>
+
+<!-- /.container -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+</body>
+</html>
