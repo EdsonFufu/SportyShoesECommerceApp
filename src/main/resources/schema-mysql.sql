@@ -1,0 +1,2 @@
+INSERT INTO user (NAME, USERNAME, EMAIL, PASSWORD,USER_ROLE)
+VALUES ('Edson Fufu', 'admin', 'edson.fufu.21.gmail.com', '$2y$10$dO3u0.tIuRWiwHBDIcLT1u8VKanPxPZ8/YGq4ESLWn/Jm/I9P7YB6','ROLE_ADMIN');
