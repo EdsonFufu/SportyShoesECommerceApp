@@ -17,16 +17,17 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/")
 public class MainController {
-    @Autowired private CustomUserDetailsService userDetailsManager;
-    @Autowired private PasswordEncoder passwordEncoder;
-
-    @Autowired private CustomUserDetailsService customUserDetailsService;
-
-    //@Autowired private Mapper mapper;
 
     @GetMapping(value = {"/","/index","/welcome"})
     public ModelAndView index(Model model){
         ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("message", "Welcome To Spoty Shoe E-Commerce WebApp");
+        return modelAndView;
+    }
+
+    @GetMapping(value = {"/products"})
+    public ModelAndView products(){
+        ModelAndView modelAndView = new ModelAndView("products");
         modelAndView.addObject("message", "Welcome To Spoty Shoe E-Commerce WebApp");
         return modelAndView;
     }

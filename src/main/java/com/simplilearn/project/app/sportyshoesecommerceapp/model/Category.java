@@ -35,7 +35,8 @@ public class Category implements Serializable {
 
     private String description;
 
-    private long count;
+    @Builder.Default
+    private long count = 0L;
 
     @Temporal(TIMESTAMP)
     @CreationTimestamp

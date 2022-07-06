@@ -11,13 +11,16 @@
 
 <body>
 <div class="page-wrapper" layout:fragment="content">
-    <div class="container text-center">
-        <div>
+    <div class="row">
+
+        <div class="container text-center card my-5">
+
+        <div class="mt-5">
             <h1>User Registration - Sign Up</h1>
         </div>
-        <form th:action="@{/register}" th:object="${user}"
-              method="post" style="max-width: 600px; margin: 0 auto;">
-            <div class="m-3">
+        <form class="card-body cardbody-color p-lg-5" th:action="@{/register}" th:object="${user}"
+              method="post" style="margin: 0 auto;">
+            <div class="m-2">
                 <div class="form-group row">
                     <label class="col-4 col-form-label">E-mail: </label>
                     <div class="col-8">
@@ -26,7 +29,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-4 col-form-label">UserName: </label>
+                    <label class="col-4 col-form-label">Username: </label>
                     <div class="col-8">
                         <input type="text" th:field="*{username}" class="form-control"
                                required minlength="2" maxlength="20"/>
@@ -51,11 +54,13 @@
 
 
                 <div>
-                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                    <button type="submit" class="btn btn-outline-primary btn-lg">Sign Up</button>
                 </div>
                 <div class="text-danger" th:if="${param.error}"> Invalid username and password. </div> <div class="text-info" th:if="${param.logout}"> You have been logged out. </div>
             </div>
         </form>
+    </div>
+
     </div>
 </div>
 </body>

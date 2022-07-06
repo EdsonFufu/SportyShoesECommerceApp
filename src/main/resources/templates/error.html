@@ -2,7 +2,7 @@
 <html
         xmlns:th="http://www.thymeleaf.org"
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{fragments/main-login}">
+        layout:decorate="~{fragments/main}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,7 +14,6 @@
         <h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>
         <p th:utext="${errorMessage}">Error java.lang.NullPointerException</p>
         <a href="index.html" th:href="@{/index}">Back to Home Page</a>
-
     </div>
 </body>
 </html>

@@ -19,5 +19,12 @@ public class ErrorController {
         model.addAttribute("errorMessage", errorMessage);
         return "error";
     }
+    @ExceptionHandler(NotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String notFound(final Throwable throwable, final Model model) {
+        log.error("Item your looking is not found", throwable);
+        model.addAttribute("errorMessage", throwable.getMessage());
+        return "error";
+    }
 
 }

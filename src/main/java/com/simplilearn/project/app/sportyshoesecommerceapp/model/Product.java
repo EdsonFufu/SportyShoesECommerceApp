@@ -34,6 +34,8 @@ public class Product implements Serializable {
 
     private int number;
 
+    private String color;
+
     private String price;
 
     private String manufacturer;

@@ -13,10 +13,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,11 +30,17 @@ public class LoginController {
     private PasswordEncoder passwordEncoder;
 
     @RequestMapping(value={ "/login"}, method = RequestMethod.GET)
-    public ModelAndView login(){
+    public ModelAndView login(@RequestParam(value = "error", required = false) String error){
         ModelAndView modelAndView = new ModelAndView();
 
+        if(error != null){
+            modelAndView.setViewName("error");
+            return modelAndView;
+        }
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         if(authentication == null || authentication instanceof AnonymousAuthenticationToken){
+            modelAndView.addObject("user",User.builder().build());
             modelAndView.setViewName("login");
             return modelAndView;
         }else {
@@ -109,16 +112,17 @@ public class LoginController {
         return modelAndView;
     }
 
-//    @RequestMapping(value="/admin/home", method = RequestMethod.GET)
-//    public ModelAndView home(){
-//        ModelAndView modelAndView = new ModelAndView();
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        User user = userService.findUserByUserName(auth.getName());
-//        modelAndView.addObject("userName", "Welcome " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
-//        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
-//        modelAndView.setViewName("admin/home");
-//        return modelAndView;
-//    }
+    @GetMapping (value = {"/users","/users/index"})
+    public ModelAndView index(){
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
+        modelAndView.setViewName("user/index");
+        modelAndView.addObject("users",userService.getAllUsers());
+        return modelAndView;
+    }
+
+
 
 
 }

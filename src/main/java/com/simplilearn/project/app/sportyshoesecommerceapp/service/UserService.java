@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -52,4 +53,9 @@ public class UserService  implements SecurityService{
     public User createUser(UserDetails user) {
         return userRepository.save((User) user);
     }
+
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
+    }
+
 }

@@ -8,9 +8,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-3 mb-md-0 mb-4">
-                    <h2 class="footer-heading"><a href="#" class="logo">Colorlib</a></h2>
-                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                    <a href="#">read more <span class="ion-ios-arrow-round-forward"></span></a>
+                    <h2 class="footer-heading"><a th:href="@{/index}" class="logo">StortyShoeEcommerce</a></h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quas optio reiciendis deleniti voluptatem facere sequi, quia, est sed dicta aliquid quidem facilis culpa iure perferendis? Dolor ad quia deserunt.</p>
+                    <a th:href="@{/about}">read more <span class="zmdi zmdi-arrow-forward"></span></a>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-md-0 mb-4">
                     <h2 class="footer-heading">Categories</h2>
@@ -22,7 +22,7 @@
                     </ul>
                 </div>
                 <div class="col-md-6 col-lg-3 mb-md-0 mb-4">
-                    <h2 class="footer-heading">Tag cloud</h2>
+                    <h2 class="footer-heading">Tags</h2>
                     <div class="tagcloud">
                         <a href="#" class="tag-cloud-link">dish</a>
                         <a href="#" class="tag-cloud-link">menu</a>
@@ -39,14 +39,14 @@
                     <form action="#" class="subscribe-form">
                         <div class="form-group d-flex">
                             <input type="text" class="form-control rounded-left" placeholder="Enter email address">
-                            <button type="submit" class="form-control submit rounded-right"><span class="sr-only">Submit</span><i class="ion-ios-send"></i></button>
+                            <button type="submit" class="form-control submit rounded-right"><span class="sr-only">Submit</span><i class="zmdi zmdi-mail-send"></i></button>
                         </div>
                     </form>
                     <h2 class="footer-heading mt-5">Follow us</h2>
                     <ul class="ftco-footer-social p-0">
-                        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="ion-logo-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="ion-logo-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="ion-logo-instagram"></span></a></li>
+                        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="zmdi zmdi-twitter"></span></a></li>
+                        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="zmdi zmdi-facebook"></span></a></li>
+                        <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="zmdi zmdi-instagram"></span></a></li>
                     </ul>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                 <div class="row">
                     <div class="col-md-6 col-lg-8">
                         <p class="copyright">
-                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ion-ios-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="fa fa-heart" aria-hidden="true"></i> by <a th:href="@{/index}" target="_blank">StortyShoeEcommerce.com</a>
                         </p>
                     </div>
                     <div class="col-md-6 col-lg-4 text-md-right">
