@@ -27,4 +27,12 @@ public class ErrorController {
         return "error";
     }
 
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public String accessDenied(final Throwable throwable, final Model model) {
+        log.error("The resource is not authorized", throwable);
+        model.addAttribute("errorMessage", throwable.getMessage());
+        return "403";
+    }
+
 }

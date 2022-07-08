@@ -32,7 +32,8 @@ public class CategoryController {
         User user = userService.findUserByUsername(auth.getName());
         modelAndView.addObject("userName", "Welcome " + user.getUsername() + "/" + user.getName() +  " (" + user.getEmail() + ")");
         modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
-        modelAndView.setViewName("caregory/index");
+        modelAndView.setViewName("category/index");
+        modelAndView.addObject("categories",categoryService.findAll());
         return modelAndView;
     }
     @GetMapping (value = {"{id}"})
@@ -46,7 +47,21 @@ public class CategoryController {
         modelAndView.setViewName("caregory/index");
         return modelAndView;
     }
+    @GetMapping (value = {"/create","/add"})
+    public ModelAndView create(){
+        ModelAndView modelAndView = new ModelAndView("category/create");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(!auth.isAuthenticated()){
+            modelAndView.addObject("errorMessage","Content Available Only for Users with Admin Role");
+            modelAndView.setViewName("redirect:/login");
+            return modelAndView;
+        }
 
+        User user = userService.findUserByUsername(auth.getName());
+        modelAndView.addObject("category",new Category());
+        modelAndView.addObject("infoMessage", "Welcome " + user.getUsername() + "/" + user.getName() +  " (" + user.getEmail() + ")");
+        return modelAndView;
+    }
     @PostMapping(value = {"/"})
     public ModelAndView add(@ModelAttribute("category") Category category, BindingResult bindingResult) throws Exception {
         ModelAndView modelAndView = new ModelAndView();

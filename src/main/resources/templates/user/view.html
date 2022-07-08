@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html
+        xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{fragments/main}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spoty Shoe E-Commerce WebApp::Product</title>
+</head>
+
+<body>
+<div class="container" layout:fragment="content">
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+
+            <div class="card my-8">
+
+                <form class="card-body cardbody-color p-lg-5" method="post" th:action="@{/register}" th:object="${user}">
+                    <div class="text-center">
+                        <h3 class="text-center text-dark mb-5">Create New User</h3>
+                    </div>
+                    <div class="mb-2">
+                        <input type="text" class="form-control" id="Fullname" th:field="*{fullname}" placeholder="Fullname">
+                    </div>
+                    <div class="mb-2">
+                        <input type="text" class="form-control" id="Username" th:field="*{username}"  placeholder="Username">
+                    </div>
+                    <div class="mb-2">
+                        <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="password">
+                    </div>
+                    <div class="mb-2">
+                        <input type="email" class="form-control" id="email" th:field="*{email}" aria-describedby="emailHelp" placeholder="Email">
+                    </div>
+                    <div class="mb-2">
+                        <select class="custom-select mr-sm-2 form-control" id="inlineFormCustomSelectEnabled" th:field="*{enabled}" th:placeholder="IsUserEnabled">
+                            <option th:value="'true'" th:text="True"></option>
+                            <option th:value="'false'" th:text="False"></option>
+                        </select>
+                    </div>
+                    <div class="mb-2">
+                        <select class="custom-select mr-sm-2 form-control" id="inlineFormCustomSelect" th:field="*{locked}" th:placeholder="IsUserLocked">
+                            <option th:value="'true'" th:text="True"></option>
+                            <option th:value="'false'" th:text="False"></option>
+                        </select>
+                    </div>
+                    <div class="" th:if="${error}">
+                        <p style="font-size: 20px; color: #FF1C19;">Oops! Something went wrong</p>
+                    </div>
+                    <div class="text-center"><button type="submit" class="btn btn-outline-primary btn-lg">Create <i class="fa fa-plus-circle"></i></button></div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -5,23 +5,63 @@
             <img src="/images/shoe-logo-new_300x300.png">
         </a>
 
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a th:href="@{/}" class="nav-link px-2 link-secondary">Home</a></li>
-            <li><a th:href="@{/products}" class="nav-link px-2 link-dark">All Products</a></li>
-            <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/product}" class="nav-link px-2 link-dark"> Products</a></li>
-            <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/category}" class="nav-link px-2 link-dark"> Categories</a></li>
-            <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/address}" class="nav-link px-2 link-dark"> Addresses</a></li>
-            <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/users}" class="nav-link px-2 link-dark"> Users</a></li>
-            <li><a th:href="@{/faqs}" class="nav-link px-2 link-dark">FAQs</a></li>
-            <li><a th:href="@{/contact}" class="nav-link px-2 link-dark">Contact Us</a></li>
-        </ul>
+        <nav class="menu">
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li sec:authorize="!hasRole('ROLE_ADMIN')"><a th:href="@{/products}">Products</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{/category/index}">Category</a>
+<!--                    <ul>-->
+<!--                        <li><a href="#0">Burger King</a></li>-->
+<!--                        <li><a href="#0">Southwest Airlines</a></li>-->
+<!--                        <li><a href="#0">Levi Strauss</a></li>-->
+<!--                    </ul>-->
+                </li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/product/index}">Products</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a href="#0">Settings</a>
+                    <ul>
+                        <li><a th:href="@{/users}">Users</a></li>
+                        <li><a th:href="@{/roles}">Roles</a></li>
+                    </ul>
+                </li>
+                <li><a th:href="@{/contact}">Contact Us</a></li>
+            </ul>
+        </nav>
+
+<!--        <ul class="nav nav-pills">-->
+<!--            <li class="nav-item"><a th:href="@{/}" class="nav-link px-2 link-secondary">Home</a></li>-->
+<!--            <li class="nav-item"><a th:href="@{/products}" class="nav-link px-2 link-dark">All Products</a></li>-->
+<!--            <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">-->
+<!--                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Category</a>-->
+<!--                <div class="dropdown-menu">-->
+<!--                    <a class="dropdown-item" th:href="@{/category}">category</a>-->
+<!--                    <a class="dropdown-item" th:href="@{/category/create}">create</a>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">-->
+<!--                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Product</a>-->
+<!--                <div class="dropdown-menu">-->
+<!--                    <a class="dropdown-item" th:href="@{/product}">category</a>-->
+<!--                    <a class="dropdown-item" th:href="@{/product/create}">create</a>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">-->
+<!--                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Settings</a>-->
+<!--                <div class="dropdown-menu">-->
+<!--                    <a class="dropdown-item" th:href="@{/users}">Users</a>-->
+<!--                    <a class="dropdown-item" th:href="@{/addresses}">Addresses</a>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li class="nav-item"><a th:href="@{/contact}" class="nav-link px-2 link-dark">Contact Us</a></li>-->
+<!--        </ul>-->
 
          <div sec:authorize="!isAuthenticated()">
             <a th:href="@{/login}"><button type="button" class="btn btn-outline-primary me-2"><i class="fa fa-lock-open"></i> Login</button></a>
-            <a th:href="@{/register}" class="col-md-3 text-end"><button type="button" class="btn btn-primary"><i class="fa fa-user-plus"></i> Sign-up</button></a>
+            <a th:href="@{/register}" class="col-md-3 text-end"><button type="button" class="btn btn-outline-primary me-2"><i class="fa fa-user-plus"></i> Sign-up</button></a>
         </div>
         <div sec:authorize="isAuthenticated()">
-            <a th:href="@{/cart}"><button type="button" class="btn btn-outline-primary me-2"><i class="fa fa-shopping-cart"></i> <span th:text="10"></span></button></a>
+            <a th:href="@{/cart}"><button type="button" class="btn btn-outline-primary me-2"><i class="fa fa-shopping-cart"></i> <span th:text="0"></span></button></a>
             <a th:href="@{/logout}"><button type="button" class="btn btn-outline-primary me-2"><i class="fa fa-lock"></i> Logout</button></a>
         </div>
 </header>

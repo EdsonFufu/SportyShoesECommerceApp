@@ -11,12 +11,16 @@
 
 <body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
     <div class="container" layout:fragment="content">
-        <div class="error-wrapper">
-            <span class="man-icon"></span>
-            <h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|" class="text-center text-dark mt-4 title">500</h1>
-            <div th:utext="${errorMessage}" class="text-center mb-5 text-dark">Error java.lang.NullPointerException</div>
-            <div class="text-center mb-5"><a href="/" th:href="@{/index}"><button type="button" class="home-btn ">Back to Home Page</button></a></div>
+
+        <div class="row">
+            <div class="col-md-12 card mb-5">
+                <div class="man-icon text-center"></div>
+                <h1 th:text="${errorCode}" class="text-center text-dark mt-4 title">404</h1>
+                <div th:utext="${errorMessage}" class="text-center mb-5 text-dark">Error java.lang.NullPointerException</div>
+                <div class="text-center mb-5"><a href="/" th:href="@{/index}"><button type="button" class="home-btn ">Back to Home Page</button></a></div>
+            </div>
         </div>
+
     </div>
 </body>
 </html>

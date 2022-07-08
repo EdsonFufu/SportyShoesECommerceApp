@@ -2,6 +2,8 @@ package com.simplilearn.project.app.sportyshoesecommerceapp.controllers;
 
 import com.simplilearn.project.app.sportyshoesecommerceapp.model.UserDTO;
 import com.simplilearn.project.app.sportyshoesecommerceapp.model.User;
+import com.simplilearn.project.app.sportyshoesecommerceapp.model.UserRole;
+import com.simplilearn.project.app.sportyshoesecommerceapp.repository.UserRoleRepository;
 import com.simplilearn.project.app.sportyshoesecommerceapp.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
 @Slf4j
 @Controller
 public class LoginController {
@@ -27,21 +30,24 @@ public class LoginController {
     private UserService userService;
 
     @Autowired
+    private UserRoleRepository userRoleRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @RequestMapping(value={ "/login"}, method = RequestMethod.GET)
-    public ModelAndView login(@RequestParam(value = "error", required = false) String error){
-        ModelAndView modelAndView = new ModelAndView();
+    @RequestMapping(value={ "/login"})
+    public ModelAndView login(@RequestParam(value = "error", required = false) boolean error){
+        ModelAndView modelAndView = new ModelAndView("login");
 
-        if(error != null){
-            modelAndView.setViewName("error");
+        if(error){
+            modelAndView.addObject("user",User.builder().build());
+            modelAndView.addObject("errorMessage","Login Failed!... Invalid Username OR Password...");
             return modelAndView;
         }
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if(authentication == null || authentication instanceof AnonymousAuthenticationToken){
             modelAndView.addObject("user",User.builder().build());
-            modelAndView.setViewName("login");
             return modelAndView;
         }else {
             return new ModelAndView("redirect:index");
@@ -91,15 +97,18 @@ public class LoginController {
                     .username(userDTO.getUsername())
                     .password(userDTO.getPassword())
                     .email(userDTO.getEmail())
+                    .enabled(userDTO.isEnabled())
+                    .locked(userDTO.isLocked())
                     .build();
 
 
             log.info(user.toString());
-            user.setLocked(false);
 
             User registeredUser = userService.createUser(user);
+
             modelAndView.addObject("user", UserDTO.builder().build());
             if(registeredUser != null) {
+                userRoleRepository.save(UserRole.builder().user(registeredUser).role(User.Role.ROLE_USER.name()).build());
                 modelAndView.addObject("message", "User [" + registeredUser.getId() + "] has been registered successfully");
                 modelAndView.setViewName("login");
             }else {
@@ -119,6 +128,25 @@ public class LoginController {
         modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
         modelAndView.setViewName("user/index");
         modelAndView.addObject("users",userService.getAllUsers());
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    public ModelAndView accessDenied(ModelAndView modelAndView) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        modelAndView.setViewName("403");
+
+        if (auth.getPrincipal() != null) {
+
+            modelAndView.addObject("userInfo", auth.getPrincipal());
+
+            String message = "Hi <b>" + auth.getName() + "</b> You do not have permission to access this page!";
+            modelAndView.addObject("errorMessage", message);
+            modelAndView.addObject("errorCode", "403");
+
+        }
+
         return modelAndView;
     }
 

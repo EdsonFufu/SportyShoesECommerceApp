@@ -5,6 +5,8 @@ import com.simplilearn.project.app.sportyshoesecommerceapp.repository.CategoryRe
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CategoryService {
@@ -16,5 +18,9 @@ public class CategoryService {
 
     public Category getCategory(long id) {
         return categoryRepository.getById(id);
+    }
+
+    public List<Category> findAll() {
+        return categoryRepository.findAll();
     }
 }
