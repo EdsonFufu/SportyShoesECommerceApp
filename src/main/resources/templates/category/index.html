@@ -13,6 +13,9 @@
 <div class="page-wrapper" layout:fragment="content">
     <div class="container rounded mt-5 bg-white p-md-5">
         <div class="h3 font-weight-bold float-left">Product Category</div>
+        <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+        <div class="alert alert-info" role="alert" th:text="${info}" th:if="${info}"></div>
+        <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
         <div class="h3 pull-right float-lg-right"><a th:href="@{/category/create}"><button class="btn btn-outline-primary"><i class="fa fa-plus-circle"></i> Create</button></a></div>
         <div class="table-responsive">
             <table class="table align-middle mb-0 bg-white border">
@@ -20,7 +23,6 @@
 
                 <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Username</th>
                     <th scope="col">Description</th>
                     <th scope="col">Created</th>
                     <th scope="col">Updated</th>
@@ -42,7 +44,7 @@
                             />
                             <div class="ms-3">
                                 <p class="fw-bold mb-1" th:text="${category.getName()}">John Doe</p>
-                                <p class="text-muted mb-0" th:text="${'Total:' + user.getCount()}">john.doe@gmail.com</p>
+                                <p class="text-muted mb-0" th:text="${'Total:' + category.getCount()}">john.doe@gmail.com</p>
                             </div>
                         </div>
                     </td>
@@ -50,12 +52,15 @@
                         <p class="fw-normal mb-1" th:text="${category.getDescription()}">Description</p>
                     </td>
                     <td>
+                        <p class="fw-normal mb-1" th:text="${category.getCreatedDate()}">Description</p>
+                    </td>
+                    <td>
                         <p class="fw-normal mb-1" th:text="${category.getUpdatedDate()}">Description</p>
                     </td>
                     <td>
                         <a th:href="@{/category/view}"><i class="fa fa-eye info"></i></a>
                         <a th:href="@{/category/update}"><i class="fa fa-edit default"></i></a>
-                        <a th:href="@{/category/delete}"><i class="fa fa-trash warning"></i></a>
+                        <a th:href="@{'/category/delete/'+ ${category.getId()}}"><i class="fa fa-trash warning"></i></a>
 
                     </td>
                 </tr>

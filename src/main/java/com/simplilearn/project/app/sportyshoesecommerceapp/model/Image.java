@@ -44,4 +44,7 @@ public class Image implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productId", referencedColumnName = "id")
     private Product product;
+
+    @OneToOne(mappedBy = "image")
+    private Category category;
 }

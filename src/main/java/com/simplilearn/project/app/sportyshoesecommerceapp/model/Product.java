@@ -61,4 +61,6 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY,orphanRemoval = true)
     private List<Image> images = new ArrayList<>();
 
+
+
 }

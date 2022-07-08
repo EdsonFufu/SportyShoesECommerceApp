@@ -31,8 +31,6 @@ public class Category implements Serializable {
 
     private String name;
 
-    private String image;
-
     private String description;
 
     @Builder.Default
@@ -50,4 +48,8 @@ public class Category implements Serializable {
 
     @OneToMany(mappedBy="category",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
     List<Product> productList = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id")
+    private Image image;
 }

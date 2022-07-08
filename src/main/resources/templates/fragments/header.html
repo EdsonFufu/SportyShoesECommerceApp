@@ -11,11 +11,9 @@
                 <li sec:authorize="!hasRole('ROLE_ADMIN')"><a th:href="@{/products}">Products</a></li>
                 <li sec:authorize="hasRole('ROLE_ADMIN')">
                     <a th:href="@{/category/index}">Category</a>
-<!--                    <ul>-->
-<!--                        <li><a href="#0">Burger King</a></li>-->
-<!--                        <li><a href="#0">Southwest Airlines</a></li>-->
-<!--                        <li><a href="#0">Levi Strauss</a></li>-->
-<!--                    </ul>-->
+                </li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{/image/index}">Images</a>
                 </li>
                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/product/index}">Products</a></li>
                 <li sec:authorize="hasRole('ROLE_ADMIN')">
