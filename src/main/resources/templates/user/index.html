@@ -66,9 +66,9 @@
                         </div>
                     </td>
                     <td>
-                        <a th:href="@{/users/view}"><i class="fa fa-eye info"></i></a>
-                        <a th:href="@{/users/update}"><i class="fa fa-edit default"></i></a>
-                        <a th:href="@{/users/delete}"><i class="fa fa-trash warning"></i></a>
+                        <a th:href="@{'/users/view/' + ${user.getId()}}"><i class="fa fa-eye info"></i></a>
+                        <a th:href="@{'/users/update/' + ${user.getId()}}"><i class="fa fa-edit default"></i></a>
+                        <a th:href="@{'/users/delete' + ${user.getId()}}"><i class="fa fa-trash warning"></i></a>
 
                     </td>
                 </tr>

@@ -29,6 +29,8 @@ public class Image implements Serializable {
 
     private String name;
 
+    private long size;
+
     private String path;
 
     @Temporal(TIMESTAMP)

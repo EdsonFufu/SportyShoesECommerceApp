@@ -52,4 +52,5 @@ public class Category implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id")
     private Image image;
+
 }

@@ -2,7 +2,7 @@
 <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom" th:fragment="header" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
         <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
 <!--            <img src="https://cdn.shopify.com/s/files/1/1811/9799/files/shoe-logo-new_300x300.png?v=1494509682">-->
-            <img src="/images/shoe-logo-new_300x300.png">
+            <img th:src="@{/images/shoe-logo-new_300x300.png}">
         </a>
 
         <nav class="menu">

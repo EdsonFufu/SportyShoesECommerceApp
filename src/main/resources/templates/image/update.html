@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html
+        xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{fragments/main}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spoty Shoe E-Commerce WebApp::Product</title>
+</head>
+
+<body>
+<div class="container" layout:fragment="content">
+
+<section>
+    <!--Subsection: Login form-->
+    <section id="subsection-login">
+        <!--Subsection title-->
+        <h4 class="mt-5">Category form</h4>
+
+        <!--Description-->
+        <p>Add new Category</p>
+
+        <!--Section: Demo-->
+        <section class="pb-4">
+            <div class="bg-white border rounded-5">
+
+                <section class="w-100 p-4 d-flex justify-content-center pb-4">
+                    <form style="width: 22rem;" th:action="@{/category/save}" th:object="${category}" enctype="multipart/form-data" th:method="put">
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form2Example1" class="form-control border" th:field="*{name}" />
+                            <label class="form-label" for="form2Example1">Name</label>
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <textarea class="form-control border" id="description" rows="5"
+                                      name="description"
+                                      placeholder="Description" th:field="*{description}"
+                                      required="required"></textarea>
+                            <label class="form-label" for="form2Example2">Description</label>
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <input type="file" name="file" id="form2Example2" class="form-control border" accept="image/png, image/jpeg" />
+<!--                            <label class="form-label" for="form2Example2">Upload Images</label>-->
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block mb-4">Update</button>
+
+                    </form>
+                </section>
+
+
+            </div>
+        </section>
+
+    </section>
+</section>
+</div>
+
+</body>
+</html>

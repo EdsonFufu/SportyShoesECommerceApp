@@ -13,9 +13,22 @@
 <div class="page-wrapper" layout:fragment="content">
     <div class="container rounded mt-5 bg-white p-md-5">
         <div class="h3 font-weight-bold float-left">Product Category</div>
-        <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
-        <div class="alert alert-info" role="alert" th:text="${info}" th:if="${info}"></div>
-        <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${success}">
+            <span th:text="${success}">Holy guacamole!</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${info}">
+            <span th:text="${info}">Holy guacamole!</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${error}">
+            <span th:text="${error}">Holy guacamole!</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
         <div class="h3 pull-right float-lg-right"><a th:href="@{/category/create}"><button class="btn btn-outline-primary"><i class="fa fa-plus-circle"></i> Create</button></a></div>
         <div class="table-responsive">
             <table class="table align-middle mb-0 bg-white border">
@@ -36,12 +49,29 @@
                 <tr th:each="category : ${categories}">
                     <td>
                         <div class="d-flex align-items-center">
-                            <img
-                                    th:src="@{/images/account-icon1.png}"
-                                    alt=""
-                                    style="width: 30px; height: 30px"
-                                    class="rounded-circle"
-                            />
+
+
+                            <div th:if="${category.getImage()}">
+                                <img
+                                        th:src="@{${category.getImage().getPath()}}"
+                                        alt=""
+                                        style="width: 40px; height: 40px"
+                                        class="rounded-circle"
+                                />
+                            </div>
+                            <!-- ELSE -->
+                            <div th:unless="${category.getImage()}">
+                                <img
+                                        th:src="@{${'/images/no-image.png'}}"
+                                        alt=""
+                                        style="width: 40px; height: 40px"
+                                        class="rounded-circle"
+                                />
+                            </div>
+
+
+
+                            <!--                                    th:src="@{${category.getImage() != null ? category.getImage().getPath() : '/images/account-icon.png' }}"-->
                             <div class="ms-3">
                                 <p class="fw-bold mb-1" th:text="${category.getName()}">John Doe</p>
                                 <p class="text-muted mb-0" th:text="${'Total:' + category.getCount()}">john.doe@gmail.com</p>
@@ -58,10 +88,9 @@
                         <p class="fw-normal mb-1" th:text="${category.getUpdatedDate()}">Description</p>
                     </td>
                     <td>
-                        <a th:href="@{/category/view}"><i class="fa fa-eye info"></i></a>
-                        <a th:href="@{/category/update}"><i class="fa fa-edit default"></i></a>
-                        <a th:href="@{'/category/delete/'+ ${category.getId()}}"><i class="fa fa-trash warning"></i></a>
-
+                        <a th:href="@{'/category/view/' + ${category.getId()}}"><i class="fa fa-eye info"></i></a>
+                        <a th:href="@{'/category/update/' + ${category.getId()}}"><i class="fa fa-edit default"></i></a>
+                        <a th:href="@{'/category/delete/' + ${category.getId()}}"><i class="fa fa-trash warning"></i></a>
                     </td>
                 </tr>
                 </tbody>
