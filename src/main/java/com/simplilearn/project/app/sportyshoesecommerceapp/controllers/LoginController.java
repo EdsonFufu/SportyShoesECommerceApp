@@ -1,6 +1,6 @@
 package com.simplilearn.project.app.sportyshoesecommerceapp.controllers;
 
-import com.simplilearn.project.app.sportyshoesecommerceapp.model.UserDTO;
+import com.simplilearn.project.app.sportyshoesecommerceapp.dto.UserDTO;
 import com.simplilearn.project.app.sportyshoesecommerceapp.model.User;
 import com.simplilearn.project.app.sportyshoesecommerceapp.model.UserRole;
 import com.simplilearn.project.app.sportyshoesecommerceapp.repository.UserRoleRepository;

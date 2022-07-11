@@ -17,7 +17,6 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "image")
 public class Image implements Serializable {
@@ -45,6 +44,7 @@ public class Image implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productId", referencedColumnName = "id")
+    @ToString.Exclude
     private Product product;
 
     @OneToOne(mappedBy = "image")

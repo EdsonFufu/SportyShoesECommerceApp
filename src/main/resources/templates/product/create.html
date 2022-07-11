@@ -2,7 +2,7 @@
 <html
         xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{fragments/main}">
+        layout:decorate="~{fragments/main}" lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,233 +12,92 @@
 <body>
 <div class="page-wrapper" layout:fragment="content">
 
-    <div class="container">
-        <div class="card">
-            <div class="form">
-                <div class="left-side">
-                    <div class="left-heading">
-                        <h3>indeed</h3>
-                    </div>
-                    <div class="steps-content">
-                        <h3>Step <span class="step-number">1</span></h3>
-                        <p class="step-number-content active">Enter your personal information to get closer to companies.</p>
-                        <p class="step-number-content d-none">Get to know better by adding your diploma,certificate and education life.</p>
-                        <p class="step-number-content d-none">Help companies get to know you better by telling then about your past experiences.</p>
-                        <p class="step-number-content d-none">Add your profile piccture and let companies find youy fast.</p>
-                    </div>
-                    <ul class="progress-bar">
-                        <li class="active">Personal Information</li>
-                        <li>Education</li>
-                        <li>Work Experience</li>
-                        <li>User Photo</li>
-                    </ul>
+    <section>
+        <!--Subsection: Login form-->
+        <section id="subsection-login">
+            <!--Subsection title-->
+            <h4 class="mt-5">Product</h4>
 
-
-
-                </div>
-                <div class="right-side">
-                    <div class="main active">
-                        <small><i class="fa fa-smile-o"></i></small>
-                        <div class="text">
-                            <h2>Your Personal Information</h2>
-                            <p>Enter your personal information to get closer to copanies.</p>
-                        </div>
-                        <div class="input-text">
-                            <div class="input-div">
-                                <input type="text" required require id="user_name">
-                                <span>First Name</span>
-                            </div>
-                            <div class="input-div">
-                                <input type="text" required>
-                                <span>Last Name</span>
-                            </div>
-                        </div>
-                        <div class="input-text">
-                            <div class="input-div">
-                                <input type="text" required require>
-                                <span>Phone number</span>
-                            </div>
-                            <div class="input-div">
-                                <input type="text" required require>
-                                <span>E-mail Address</span>
-                            </div>
-                        </div>
-                        <div class="input-text">
-                            <div class="input-div">
-                                <select>
-                                    <option>Select Country</option>
-                                    <option>India</option>
-                                    <option>France</option>
-                                    <option>UK</option>
-                                    <option>USA</option>
-                                    <option>Germany</option>
-                                    <option>Russia</option>
-                                    <option>China</option>
-                                    <option>Japan</option>
-                                    <option>Pakistan</option>
-                                </select>
-
-                            </div>
-                            <div class="input-div">
-
-                                <select>
-                                    <option>Select City</option>
-                                    <option>New Delhi</option>
-                                    <option>Paris</option>
-                                    <option>London</option>
-                                    <option>Washington D.C.</option>
-                                    <option>Berlin</option>
-                                    <option>Moscow</option>
-                                    <option>Bejing</option>
-                                    <option>Tokyo</option>
-                                    <option>Islamabad</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="buttons">
-                            <button class="next_button">Next Step</button>
-                        </div>
-                    </div>
-                    <div class="main">
-                        <small><i class="fa fa-smile-o"></i></small>
-                        <div class="text">
-                            <h2>Education</h2>
-                            <p>Inform companies about your education life.</p>
-                        </div>
-                        <div class="input-text">
-                            <div class="input-div">
-                                <input type="text" required require>
-                                <span>School Name</span>
-                            </div>
-                            <div class="input-div">
-                                <input type="text" required>
-                                <span>Board Name</span>
-                            </div>
-                        </div>
-                        <div class="input-text">
-                            <div class="input-div">
-                                <input type="text" required require>
-                                <span>College/University name</span>
-                            </div>
-                        </div>
-                        <div class="input-text">
-                            <div class="input-div">
-                                <select>
-                                    <option>Select Course</option>
-                                    <option>BCA</option>
-                                    <option>B-TECH</option>
-                                    <option>BA</option>
-                                    <option>B-COM</option>
-                                    <option>B-SC</option>
-                                    <option>MBA</option>
-                                    <option>MCA</option>
-                                    <option>M-COM</option>
-                                    <option>M-TECH</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="buttons button_space">
-                            <button class="back_button">Back</button>
-                            <button class="next_button">Next Step</button>
-                        </div>
-                    </div>
-                    <div class="main">
-                        <small><i class="fa fa-smile-o"></i></small>
-                        <div class="text">
-                            <h2>Work Experiences</h2>
-                            <p>Can you talk about your past work experience?</p>
-                        </div>
-                        <div class="input-text">
-                            <div class="input-div">
-                                <input type="text" required require>
-                                <span>Experience 1</span>
-                            </div>
-                            <div class="input-div">
-                                <input type="text" required require>
-                                <span>Position</span>
-                            </div>
-                        </div>
-                        <div class="input-text">
-                            <div class="input-div">
-                                <input type="text" required>
-                                <span>Experience 2</span>
-                            </div>
-                            <div class="input-div">
-                                <input type="text" required>
-                                <span>Position</span>
-                            </div>
-                        </div>
-                        <div class="input-text">
-                            <div class="input-div">
-                                <input type="text" required>
-                                <span>Experience 3</span>
-                            </div>
-                            <div class="input-div">
-                                <input type="text" required>
-                                <span>Position</span>
-                            </div>
-                        </div>
-                        <div class="buttons button_space">
-                            <button class="back_button">Back</button>
-                            <button class="next_button">Next Step</button>
-                        </div>
-                    </div>
-
-
-
-                    <div class="main">
-                        <small><i class="fa fa-smile-o"></i></small>
-                        <div class="text">
-                            <h2>User Photo</h2>
-                            <p>Upload your profile picture and share yourself.</p>
-                        </div>
-                        <div class="user_card">
-                            <span></span>
-                            <div class="circle">
-                                <span><img src="https://i.imgur.com/hnwphgM.jpg"></span>
-
-                            </div>
-                            <div class="social">
-                                <span><i class="fa fa-share-alt"></i></span>
-                                <span><i class="fa fa-heart"></i></span>
-
-                            </div>
-                            <div class="user_name">
-                                <h3>Peter Hawkins</h3>
-                                <div class="detail">
-                                    <p><a href="#">Izmar,Turkey</a>Hiring</p>
-                                    <p>17 last day . 94Apply</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="buttons button_space">
-                            <button class="back_button">Back</button>
-                            <button class="submit_button">Submit</button>
-                        </div>
-                    </div>
-                    <div class="main">
-                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
-                            <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-                        </svg>
-
-                        <div class="text congrats">
-                            <h2>Congratulations!</h2>
-                            <p>Thanks Mr./Mrs. <span class="shown_name"></span> your information have been submitted successfully for the future reference we will contact you soon.</p>
-                        </div>
-                    </div>
-
-
-
-
-
-
-                </div>
+            <!--Description-->
+            <p>Add new Product</p>
+            <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${success}">
+                <span th:text="${success}">Holy guacamole!</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-        </div>
-    </div>
 
+            <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${info}">
+                <span th:text="${info}">Holy guacamole!</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${error}">
+                <span th:text="${error}">Holy guacamole!</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <!--Section: Demo-->
+            <section class="pb-4">
+                <div class="bg-white border rounded-5">
+
+                    <section class="w-100 p-4 d-flex justify-content-center pb-4">
+                        <form class="row g-3 needs-validation" style="" th:action="@{/product/save}" th:object="${product}" enctype="multipart/form-data" method="post" novalidate>
+                                <div class="col-md-4">
+                                    <label for="validationCustom01" class="form-label">Product name</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value="" required th:field="*{name}">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validationCustom02" class="form-label">Product Number</label>
+                                    <input type="text" class="form-control" id="validationCustom02" value="1000" required th:field="*{number}">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validationCustomUsername" class="form-label">Price</label>
+                                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required th:field="*{price}">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom01" class="form-label">Color</label>
+                                    <input type="text" class="form-control" id="validationColor" value="" required th:field="*{color}">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom02" class="form-label">Size</label>
+                                    <input type="text" class="form-control" id="validationSize" value="1000" required th:field="*{size}">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationBrand" class="form-label">Brand</label>
+                                    <input type="text" class="form-control" id="validationBrand" aria-describedby="inputGroupPrepend" required th:field="*{brand}">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationStock" class="form-label">StockLevel</label>
+                                    <input type="number" class="form-control" id="validationStock" aria-describedby="inputGroupPrepend" required th:field="*{stockLevel}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationDescription" class="form-label">Description</label>
+                                    <textarea class="form-control" id="validationDescription" rows="3"
+                                              name="description"
+                                              placeholder="Description" th:field="*{description}"
+                                              required="required"></textarea>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom04" class="form-label">Category</label>
+                                    <select class="form-select" id="validationCustom04" required th:field="*{categoryId}">
+                                        <option th:each="category : ${categories}" th:value="${category.getId()}" th:text="${category.getName()}"></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom05" class="form-label">Photos</label>
+                                    <input type="file" class="form-control" id="validationCustom05" required name="files" accept="image/png, image/jpeg" multiple>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-outline-primary btn-lg" type="submit">Save Product</button>
+                                </div>
+                        </form>
+                    </section>
+
+                </div>
+            </section>
+
+        </section>
+    </section>
 </div>
+
 
 </body>
 </html>

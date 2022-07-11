@@ -16,27 +16,31 @@
     <!--Subsection: Login form-->
     <section id="subsection-login">
         <!--Subsection title-->
-        <h4 class="mt-5">Category form</h4>
+        <h4 class="mt-5">Category</h4>
 
         <!--Description-->
         <p>Add new Category</p>
-        <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${success}">
-            <span th:text="${success}">Holy guacamole!</span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
 
-        <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${info}">
-            <span th:text="${info}">Holy guacamole!</span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-
-        <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${error}">
-            <span th:text="${error}">Holy guacamole!</span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
         <!--Section: Demo-->
         <section class="pb-4">
             <div class="bg-white border rounded-5">
+
+                <div class="row">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${success}">
+                        <span th:text="${success}">Holy guacamole!</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${info}">
+                        <span th:text="${info}">Holy guacamole!</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${error}">
+                        <span th:text="${error}">Holy guacamole!</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
 
                 <section class="w-100 p-4 d-flex justify-content-center pb-4">
                     <form style="width: 22rem;" th:action="@{/category/save}" th:object="${category}" enctype="multipart/form-data" method="post">

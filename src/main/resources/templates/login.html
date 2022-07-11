@@ -20,7 +20,7 @@
                         <form class="card-body cardbody-color p-lg-5" method="post" th:action="@{/login}" th:object="${user}">
                             <h2 class="text-center text-dark mt-4 mb-4">Login</h2>
                             <div class="text-center">
-                                <img th:src="@{/templates/image/account-icon.png}" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                                <img th:src="@{/images/account-icon.png}" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
                                      width="200px" alt="profile" >
                             </div>
                             <div class="mb-3">
@@ -29,8 +29,8 @@
                             <div class="mb-3">
                                 <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="password">
                             </div>
-                            <div class="" th:if="${error}">
-                                <p style="font-size: 20px; color: #FF1C19;">User Name or Password invalid, please verify</p>
+                            <div class="" th:if="${(param.error != null) and (param.error[0] == 'true')}">
+                                <p style="font-size: 14px; color: #FF1C19;">Incorrect Username or Password</p>
                             </div>
                             <div class="text-center"><button type="submit" class="btn btn-outline-primary btn-lg px-5 mb-5 w-80">Login</button></div>
                             <div id="emailHelp" class="form-text text-center mb-5 text-dark">

@@ -24,8 +24,7 @@
         <!--Section: Demo-->
         <section class="pb-4">
             <div class="bg-white border rounded-5">
-
-                <section class="w-100 p-4 d-flex justify-content-center pb-4">
+                <div class="row px-5">
                     <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${success}">
                         <span th:text="${success}">Holy guacamole!</span>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -40,6 +39,9 @@
                         <span th:text="${error}">Holy guacamole!</span>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+                </div>
+                <section class="w-100 p-4 d-flex justify-content-center pb-4">
+
 
                     <form style="width: 22rem;" th:action="@{/category/update}" th:object="${category}" enctype="multipart/form-data" th:method="post">
                         <!-- Email input -->

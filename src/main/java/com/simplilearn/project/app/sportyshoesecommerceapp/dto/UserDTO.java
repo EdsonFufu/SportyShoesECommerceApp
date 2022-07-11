@@ -1,4 +1,4 @@
-package com.simplilearn.project.app.sportyshoesecommerceapp.model;
+package com.simplilearn.project.app.sportyshoesecommerceapp.dto;
 
 import lombok.*;
 

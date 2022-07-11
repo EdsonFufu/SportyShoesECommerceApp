@@ -19,7 +19,6 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "category")
 public class Category implements Serializable {
@@ -31,6 +30,7 @@ public class Category implements Serializable {
 
     private String name;
 
+    @Lob
     private String description;
 
     @Builder.Default
@@ -47,6 +47,7 @@ public class Category implements Serializable {
     private Date updatedDate;
 
     @OneToMany(mappedBy="category",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
+    @ToString.Exclude
     List<Product> productList = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
