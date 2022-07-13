@@ -14,7 +14,6 @@ import java.util.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "USER")
 public class User implements Serializable, UserDetails {
@@ -92,4 +91,13 @@ public class User implements Serializable, UserDetails {
     public boolean isEnabled() {
         return enabled;
     }
+
+
+    @OneToMany(mappedBy="user",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
+    @ToString.Exclude
+    List<Cart> cartList = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_id")
+    private Contact contact;
 }

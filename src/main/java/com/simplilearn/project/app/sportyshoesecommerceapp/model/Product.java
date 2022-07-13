@@ -8,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -61,8 +62,24 @@ public class Product implements Serializable {
     @ToString.Exclude
     private Category category;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cartItemId", referencedColumnName = "id")
+    @ToString.Exclude
+    private CartItem cartItem;
+
+
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY,orphanRemoval = true)
     @ToString.Exclude
     private List<Image> images = new ArrayList<>();
+
+    public String getFormatedPrice(){
+        double amount = Double.parseDouble(price);
+        DecimalFormat formatter = new DecimalFormat("#,###.00");
+        return "TSZ " + formatter.format(amount);
+    }
+    public String getFirstImagePath(){
+        Image image = this.getImages().stream().findFirst().orElse(null);
+        return image != null ? image.getPath() : "/images/no-image.png";
+    }
 
 }

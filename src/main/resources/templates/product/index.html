@@ -43,7 +43,6 @@
                     <th scope="col">Price</th>
                     <th scope="col">Brand</th>
                     <th scope="col">Category</th>
-                    <th scope="col">Created</th>
                     <th scope="col">Updated</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -80,7 +79,7 @@
 
                             <div class="ms-3">
                                 <p class="fw-bold mb-1" th:text="${product.getName()}">John Doe</p>
-                                <p class="text-muted mb-0" th:text="${'Total:' + product.getStockLevel()}">0</p>
+                                <p class="text-muted mb-0" th:text="${ 'Created At:' + #dates.format(product.getCreatedDate(), 'dd MMM,yyyy')}">25 July,2022</p>
                             </div>
                         </div>
                     </td>
@@ -101,9 +100,6 @@
                     </td>
                     <td>
                         <p class="fw-normal mb-1" th:text="${product.getCategory().getName()}">Category</p>
-                    </td>
-                    <td>
-                        <p class="fw-normal mb-1" th:text="${product.getCreatedDate()}">Description</p>
                     </td>
                     <td>
                         <p class="fw-normal mb-1" th:text="${product.getUpdatedDate()}">Description</p>

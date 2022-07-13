@@ -158,121 +158,84 @@
                     <li><a href="#">Price (high)</a></li>
                 </ul>
 
-                <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                        <div class="shop__thumb">
-                            <a href="#">
-                                <div class="shop-thumb__img">
-                                    <img src="https://via.placeholder.com/400x400/87CEFA/000000" class="img-responsive" alt="...">
+
+                <div class="container">
+
+                    <div class="row g-1">
+
+                        <div class="col-sm-6 col-md-4"  th:each="product : ${products.page}">
+
+                            <div class="card p-3 m-2">
+
+                                <div class="text-center">
+
+                                    <a th:href="@{${'/products/' + product.getId()}}"><img th:src="@{${product.getFirstImagePath()}}" width="200" /> </a>
+
                                 </div>
-                                <h5 class="shop-thumb__title">
-                                    Product Title
-                                </h5>
-                                <div class="shop-thumb__price">
-                                    <span class="shop-thumb-price_old">$80.99</span>
-                                    <span class="shop-thumb-price_new">$59.99</span>
+
+                                <div class="product-details">
+
+
+                                    <span class="font-weight-bold d-block" th:text="${product.getFormatedPrice()}">$ 7.00</span>
+                                    <span th:text="${product.getName()}">Red Redish</span>
+
+
+                                    <div class="buttons d-flex flex-row justify-content-around">
+                                        <a th:href="@{${'/products/' + product.getId()}}"><div class="cart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </div></a>
+                                        <a th:href="@{${'/products/' + product.getId()}}"><div class="btn-success cart">
+                                            <i class="fa fa-eye"></i>
+                                        </div></a>
+                                    </div>
+
+                                    <div class="weight">
+
+                                        <small>1 piece 2.5kg</small>
+
+                                    </div>
+
                                 </div>
-                            </a>
+
+
+
+                            </div>
+
                         </div>
-                    </div>
 
-                    <div class="col-sm-6 col-md-4">
-                        <div class="shop__thumb">
-                            <a href="#">
-                                <div class="shop-thumb__img">
-                                    <img src="https://via.placeholder.com/400x400/20B2AA/000000" class="img-responsive" alt="...">
-                                </div>
-                                <h5 class="shop-thumb__title">
-                                    Product Title
-                                </h5>
-                                <div class="shop-thumb__price">
-                                    $59.99
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-4">
-                        <div class="shop__thumb">
-                            <a href="#">
-                                <div class="shop-thumb__img">
-                                    <img src="https://via.placeholder.com/400x400/FFB6C1/000000" class="img-responsive" alt="...">
-                                </div>
-                                <h5 class="shop-thumb__title">
-                                    Product Title
-                                </h5>
-                                <div class="shop-thumb__price">
-                                    $59.99
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-4">
-                        <div class="shop__thumb">
-                            <a href="#">
-                                <div class="shop-thumb__img">
-                                    <img src="https://via.placeholder.com/400x400/87CEFA/000000" class="img-responsive" alt="...">
-                                </div>
-                                <h5 class="shop-thumb__title">
-                                    Product Title
-                                </h5>
-                                <div class="shop-thumb__price">
-                                    $59.99
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-4">
-                        <div class="shop__thumb">
-                            <a href="#">
-                                <div class="shop-thumb__img">
-                                    <img src="https://via.placeholder.com/400x400/FFA07A/000000" class="img-responsive" alt="...">
-                                </div>
-                                <h5 class="shop-thumb__title">
-                                    Product Title
-                                </h5>
-                                <div class="shop-thumb__price">
-                                    $59.99
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-4">
-                        <div class="shop__thumb">
-                            <a href="#">
-                                <div class="shop-thumb__img">
-                                    <img src="https://via.placeholder.com/400x400/48D1CC/000000" class="img-responsive" alt="...">
-                                </div>
-                                <h5 class="shop-thumb__title">
-                                    Product Title
-                                </h5>
-                                <div class="shop-thumb__price">
-                                    $59.99
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div> <!-- / .row -->
-
-                <!-- Pagination -->
-                <div class="row">
-                    <div class="col-sm-12">
-
-                        <ul class="pagination pull-right">
-                            <li class="page-item disabled" ><a href="#">«</a></li>
-                            <li class="page-item active" ><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                            <li class="page-item"><a href="#">2</a></li>
-                            <li class="page-item"><a href="#">3</a></li>
-                            <li class="page-item"><a href="#">4</a></li>
-                            <li class="page-item"><a href="#">5</a></li>
-                            <li class="page-item"><a href="#">»</a></li>
-                        </ul>
 
                     </div>
-                </div> <!-- / .row -->
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <table class="">
+                            <tfoot><tr><td th:align="center">
+                                <ul class="page" th:if="${products.page.totalPages > 1}">
+                                    <li class="page__btn" th:classappend="${!products.paging.isPrevEnabled()? 'disabled' : ''}">
+                                        <a class="page-link" th:href="@{'/products/?pageNumber=' + ${products.paging.pageNumber - 1}}"
+                                           tabindex="-1"> <span aria-hidden="true">«</span></a>
+                                    </li>
+                                    <th:block th:each="item : ${products.paging.getItems()}">
+                                        <li class="page__numbers" th:classappend="${item.index == products.paging.pageNumber? 'active' : ''}"
+                                            th:if="${item.pageItemType.name() == 'PAGE'}">
+                                            <a class="page-link" th:href="@{'/products/?pageNumber=' + ${item.index}}" th:text="${item.index}"></a>
+                                        </li>
+                                        <li class="page__dots disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                                            <a class="page-link" href="#">...</a>
+                                        </li>
+                                    </th:block>
+                                    <li class="page__btn" th:classappend="${!products.paging.isNextEnabled()? 'disabled' : ''}">
+                                        <a class="page-link" th:href="@{'/products/?pageNumber=' + ${products.paging.pageNumber + 1}}"><span aria-hidden="true">»</span></a>
+                                    </li>
+
+                                </ul>
+                            </td></tr></tfoot>
+                        </table>
+
+                    </div>
+                    <!-- / .row -->
+                </div>
+
+
 
             </div> <!-- / .col-sm-8 -->
         </div> <!-- / .row -->

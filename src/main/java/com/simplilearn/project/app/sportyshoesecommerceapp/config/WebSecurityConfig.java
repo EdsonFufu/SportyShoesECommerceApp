@@ -2,6 +2,9 @@ package com.simplilearn.project.app.sportyshoesecommerceapp.config;
 
 import com.simplilearn.project.app.sportyshoesecommerceapp.exceptions.CustomAccessDeniedHandler;
 import com.simplilearn.project.app.sportyshoesecommerceapp.exceptions.CustomAuthenticationFailureHandler;
+import com.simplilearn.project.app.sportyshoesecommerceapp.model.Cart;
+import com.simplilearn.project.app.sportyshoesecommerceapp.model.User;
+import com.simplilearn.project.app.sportyshoesecommerceapp.service.CartService;
 import com.simplilearn.project.app.sportyshoesecommerceapp.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,11 +27,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 @Slf4j
 @Configuration
@@ -39,6 +44,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public final CustomUserDetailsService customUserDetailsService;
 
     public final PasswordEncoder passwordEncoder;
+
+    public final CartService cartService;
 
 //    public final DataSource dataSource;
 
@@ -57,6 +64,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.authenticationProvider(authenticationProvider());
 //    }
+    @Bean
+    public HttpSessionEventPublisher httpSessionEventPublisher() {
+        return new HttpSessionEventPublisher();
+    }
 
     @Override
     @Bean
@@ -93,7 +104,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         http.authorizeRequests()
-                .antMatchers("/","/index","/login","/register","/products","/logout").permitAll()
+                .antMatchers("/","/index","/login","/register","/products","/logout","/products/**","/uploads/**").permitAll()
                 .antMatchers("/product","/users","/category","/payment","/address","/order","/product/**","/category/**","/users/**","/address/**","/order/**","/payment/**","image/**").hasRole("ADMIN").anyRequest().authenticated()
                 .and()
                 .formLogin(form -> form
@@ -109,6 +120,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                 String username = userDetails.getUsername();
 
                                 System.out.println("The user " + username + " has logged in.");
+
+                                HttpSession session = request.getSession();
+                                session.setAttribute("username",username);
+                                session.setAttribute("totalItem",0);
+                                User userInfo = customUserDetailsService.getUserByUsername(username);
+                                System.out.println(userInfo);
+                                Cart cart = Cart.builder()
+                                        .user(userInfo)
+                                        .sessionId(session.getId())
+                                        .status(false)
+                                        .fullname(userInfo.getName())
+                                        //.mobile(userInfo.getContact().getMobile())
+                                        .email(userInfo.getEmail())
+                                        //.address1(userInfo.getContact().getAddress1())
+                                        //.address2(userInfo.getContact().getAddress2())
+                                        //.city(userInfo.getContact().getCity())
+                                        //.country(userInfo.getContact().getCountry())
+                                        .build();
+                                cartService.save(cart);
+
 
                                 response.sendRedirect(request.getContextPath());
                             }

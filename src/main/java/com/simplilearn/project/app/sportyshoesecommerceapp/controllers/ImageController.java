@@ -5,6 +5,7 @@ import com.simplilearn.project.app.sportyshoesecommerceapp.model.Image;
 import com.simplilearn.project.app.sportyshoesecommerceapp.model.User;
 import com.simplilearn.project.app.sportyshoesecommerceapp.repository.ImageRepository;
 import com.simplilearn.project.app.sportyshoesecommerceapp.service.CategoryService;
+import com.simplilearn.project.app.sportyshoesecommerceapp.service.ImageService;
 import com.simplilearn.project.app.sportyshoesecommerceapp.service.UserService;
 import com.simplilearn.project.app.sportyshoesecommerceapp.utils.AuthUtils;
 import com.simplilearn.project.app.sportyshoesecommerceapp.utils.FileUploadUtil;
@@ -30,17 +31,19 @@ import java.util.stream.Collectors;
 public class ImageController {
 
     @Autowired private ImageRepository imageRepository;
+    @Autowired private ImageService imageService;
 
     private final String UPLOAD_DIR = "./uploads/";
 
     @GetMapping (value = {"/","/index"})
-    public ModelAndView index(){
-        ModelAndView modelAndView = new ModelAndView("image/index");
+    public ModelAndView index(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
+                              @RequestParam(value = "size", required = false, defaultValue = "6") int size, ModelAndView modelAndView){
+        modelAndView.setViewName("image/index");
         AuthUtils.isAuthenticated(SecurityContextHolder.getContext().getAuthentication(), modelAndView);
         if(modelAndView.getModel().containsKey("error")){
             return modelAndView;
         }
-        modelAndView.addObject("images",imageRepository.findAll());
+        modelAndView.addObject("images", imageService.getPage(pageNumber, size));
         return modelAndView;
     }
     @GetMapping (value = {"{id}"})

@@ -1,10 +1,13 @@
 package com.simplilearn.project.app.sportyshoesecommerceapp.controllers;
 
 import com.simplilearn.project.app.sportyshoesecommerceapp.service.CustomUserDetailsService;
+import com.simplilearn.project.app.sportyshoesecommerceapp.service.ProductService;
+import com.simplilearn.project.app.sportyshoesecommerceapp.utils.AuthUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/")
 public class MainController {
 
+    @Autowired private ProductService productService;
+
     @GetMapping(value = {"/","/index","/welcome"})
     public ModelAndView index(Model model){
         ModelAndView modelAndView = new ModelAndView("index");
@@ -25,10 +30,18 @@ public class MainController {
         return modelAndView;
     }
 
-    @GetMapping(value = {"/products"})
-    public ModelAndView products(){
-        ModelAndView modelAndView = new ModelAndView("products");
-        modelAndView.addObject("message", "Welcome To Spoty Shoe E-Commerce WebApp");
+    @GetMapping (value = {"/products"})
+    public ModelAndView products(@RequestParam(value = "pageNumber", required = false, defaultValue = "1") int pageNumber,
+                              @RequestParam(value = "size", required = false, defaultValue = "6") int size, ModelAndView modelAndView){
+        modelAndView.setViewName("products");
+        modelAndView.addObject("products", productService.getPage(pageNumber, size));
+        return modelAndView;
+    }
+
+    @GetMapping(value = {"/products/{id}"})
+    public ModelAndView productsDetail(@PathVariable("id") long id){
+        ModelAndView modelAndView = new ModelAndView("product-detail");
+        modelAndView.addObject("product", productService.getProduct(id));
         return modelAndView;
     }
 
