@@ -78,7 +78,7 @@
                 <tr>
                 <td colspan="5">
 
-                        <ul class="page" th:if="${images.page.totalPages > 1}">
+                        <ul th:style="${'list-style-type:none'}" class="page" th:if="${images.page.totalPages > 1}">
                             <li class="page-item" th:classappend="${!images.paging.isPrevEnabled()? 'disabled' : ''}">
                                 <a class="page-link" th:href="@{'/image/?pageNumber=' + ${images.paging.pageNumber - 1}}"
                                    tabindex="-1"> <span aria-hidden="true">«</span></a>

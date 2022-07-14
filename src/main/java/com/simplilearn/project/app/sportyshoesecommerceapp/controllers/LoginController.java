@@ -1,9 +1,11 @@
 package com.simplilearn.project.app.sportyshoesecommerceapp.controllers;
 
 import com.simplilearn.project.app.sportyshoesecommerceapp.dto.UserDTO;
+import com.simplilearn.project.app.sportyshoesecommerceapp.model.Cart;
 import com.simplilearn.project.app.sportyshoesecommerceapp.model.User;
 import com.simplilearn.project.app.sportyshoesecommerceapp.model.UserRole;
 import com.simplilearn.project.app.sportyshoesecommerceapp.repository.UserRoleRepository;
+import com.simplilearn.project.app.sportyshoesecommerceapp.service.CartService;
 import com.simplilearn.project.app.sportyshoesecommerceapp.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Slf4j
@@ -34,6 +37,9 @@ public class LoginController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private CartService cartService;
 
     @RequestMapping(value={ "/login"})
     public ModelAndView login(@RequestParam(value = "error", required = false) boolean error){
@@ -56,9 +62,13 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logoutSuccessfulPage(Model model, HttpServletRequest request, HttpServletResponse response) {
+    public String logoutSuccessfulPage(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
+            Cart cart = cartService.getCartSessionId(session.getId());
+            if(!cart.isStatus()){
+                cartService.delete(cart);
+            }
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         model.addAttribute("title", "Logout");

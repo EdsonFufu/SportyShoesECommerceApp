@@ -1366,7 +1366,9 @@ td.pt-2 > img {
 
 
 
-
+.page.ul {
+    list-style-type: none;
+}
 
 
 

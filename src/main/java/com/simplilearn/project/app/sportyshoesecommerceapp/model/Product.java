@@ -10,8 +10,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
 
@@ -22,7 +24,7 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @Setter
 @Entity
 @Table(name = "product")
-public class Product implements Serializable {
+public class Product implements Serializable,Comparable<Product> {
     private static final long serialVersionUID = 8967534090411260130L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -82,4 +84,19 @@ public class Product implements Serializable {
         return image != null ? image.getPath() : "/images/no-image.png";
     }
 
+    public List<Image> getSortedImages(){
+        this.getImages().sort(new Comparator<Image>() {
+            @Override
+            public int compare(Image o1, Image o2) {
+                return o1.getId() > o2.getId() ? 1 : 0;
+            }
+        });
+
+        return this.getImages();
+    }
+
+    @Override
+    public int compareTo(Product p) {
+        return this.getId().compareTo(p.getId());
+    }
 }

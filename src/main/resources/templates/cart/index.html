@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html
+        xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{fragments/main}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spoty Shoe E-Commerce WebApp::Images</title>
+</head>
+
+<body>
+<div class="page-wrapper" layout:fragment="content">
+    <div class="container rounded mt-5 bg-white p-md-5">
+        <div class="h3 font-weight-bold float-left">Cart List</div>
+        <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+        <div class="alert alert-info" role="alert" th:text="${info}" th:if="${info}"></div>
+        <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+        <div class="table-responsive row">
+            <table class="table align-middle mb-0 bg-white border">
+                <thead class="bg-light">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Size</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Updated</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="cart : ${carts.page}">
+                    <td>
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1" th:text="${cart.getFullname()}">John Doe</p>
+                            <p class="text-muted mb-0" th:text="${cart.getEmail()}">john.doe@gmail.com</p>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="fw-normal mb-1" th:text="${cart.getSessionId()}">Size</p>
+                    </td>
+                    <td>
+                        <p class="fw-normal mb-1" th:text="${cart.getCreatedDate()}">Description</p>
+                    </td>
+                    <td>
+                        <p class="fw-normal mb-1" th:text="${cart.getUpdatedDate()}">Description</p>
+                    </td>
+                    <td>
+                        <p class="fw-normal mb-1" th:text="${cart.isStatus()}">Status</p>
+                    </td>
+                    <td>
+                        <a th:href="@{'/cart/view/' + ${cart.getId()}}"><i class="fa fa-eye info"></i></a>
+                        <a th:href="@{'/cart/delete/' + ${cart.getId()}}"><i class="fa fa-trash warning"></i></a>
+                    </td>
+                </tr>
+                <tr th:unless="${carts.paging.getItems()}">
+                    <td colspan="2"> No Data Available </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                <td colspan="5">
+
+                        <ul th:style="${'list-style-type:none'}" class="page" th:if="${carts.page.totalPages > 1}">
+                            <li class="page-item" th:classappend="${!carts.paging.isPrevEnabled()? 'disabled' : ''}">
+                                <a class="page-link" th:href="@{'/cart/?pageNumber=' + ${carts.paging.pageNumber - 1}}"
+                                   tabindex="-1"> <span aria-hidden="true">«</span></a>
+                            </li>
+                            <th:block th:each="item : ${carts.paging.getItems()}">
+                                <li class="page-item" th:classappend="${item.index == carts.paging.pageNumber? 'active' : ''}"
+                                    th:if="${item.pageItemType.name() == 'PAGE'}">
+                                    <a class="page-link" th:href="@{'/cart/?pageNumber=' + ${item.index}}"
+                                       th:text="${item.index}"></a>
+                                </li>
+                                <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                                    <a class="page-link" href="#">...</a>
+                                </li>
+                            </th:block>
+                            <li class="page-item" th:classappend="${!carts.paging.isNextEnabled()? 'disabled' : ''}">
+                                <a class="page-link" th:href="@{'/cart/?pageNumber=' + ${carts.paging.pageNumber + 1}}"><span aria-hidden="true">»</span></a>
+                            </li>
+
+                        </ul>
+                </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>

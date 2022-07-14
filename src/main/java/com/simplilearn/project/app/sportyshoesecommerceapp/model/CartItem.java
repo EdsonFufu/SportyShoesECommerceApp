@@ -17,7 +17,6 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "cart_item")
 public class CartItem implements Serializable {
@@ -27,7 +26,7 @@ public class CartItem implements Serializable {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private float price;
+    private double price;
 
     private int quantity;
 
@@ -53,4 +52,17 @@ public class CartItem implements Serializable {
     @ToString.Exclude
     private Product product;
 
+    @Override
+    public String toString() {
+        return "CartItem{" +
+                "id=" + id +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", active=" + active +
+                ", createdDate=" + createdDate +
+                ", updatedDate=" + updatedDate +
+                ", cart=" + cart +
+                ", product=" + product +
+                '}';
+    }
 }

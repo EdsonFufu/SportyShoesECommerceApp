@@ -48,4 +48,8 @@ public class ProductService {
         Page<Product> productPage = productRepository.findAll(request);
         return new Paged<>(productPage, Paging.of(productPage.getTotalPages(), pageNumber, size));
     }
+
+    public List<Product> getRecentProducts(){
+        return productRepository.findTop6ByOrderByCreatedDateDesc();
+    }
 }

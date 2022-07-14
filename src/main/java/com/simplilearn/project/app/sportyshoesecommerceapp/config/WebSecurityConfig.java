@@ -35,6 +35,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.stream.Collectors;
+
 @Slf4j
 @Configuration
 @EnableWebSecurity
@@ -104,7 +106,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         http.authorizeRequests()
-                .antMatchers("/","/index","/login","/register","/products","/logout","/products/**","/uploads/**").permitAll()
+                .antMatchers("/","/index","/login","/register","/products","/logout","/uploads/**","/mdb/**").permitAll()
+                .antMatchers("/checkout","/products/**","/cart-item/**","/cart-detail").hasRole("USER")
                 .antMatchers("/product","/users","/category","/payment","/address","/order","/product/**","/category/**","/users/**","/address/**","/order/**","/payment/**","image/**").hasRole("ADMIN").anyRequest().authenticated()
                 .and()
                 .formLogin(form -> form

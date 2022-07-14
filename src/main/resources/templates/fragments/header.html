@@ -12,10 +12,14 @@
                 <li sec:authorize="hasRole('ROLE_ADMIN')">
                     <a th:href="@{/category/index}">Category</a>
                 </li>
+
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/product/index}">Products</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/cart/index}">Cart</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/order/index}">Order</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/payment/index}">Payments</a></li>
                 <li sec:authorize="hasRole('ROLE_ADMIN')">
                     <a th:href="@{/image/index}">Images</a>
                 </li>
-                <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/product/index}">Products</a></li>
                 <li sec:authorize="hasRole('ROLE_ADMIN')">
                     <a href="#0">Settings</a>
                     <ul>
@@ -59,7 +63,7 @@
             <a th:href="@{/register}" class="col-md-3 text-end"><button type="button" class="btn btn-outline-primary me-2"><i class="fa fa-user-plus"></i> Sign-up</button></a>
         </div>
         <div sec:authorize="isAuthenticated()">
-            <a th:href="@{/cart}"><button type="button" class="btn btn-outline-primary me-2"><i class="fa fa-shopping-cart"></i> <span th:text="${#session.getAttribute('totalItem')}"></span></button></a>
+            <a th:href="@{/cart-detail}"><button type="button" class="btn btn-outline-primary me-2"><i class="fa fa-shopping-cart"></i> <span th:text="${#session.getAttribute('totalItem')}"></span></button></a>
             <a th:href="@{/logout}"><button type="button" class="btn btn-outline-primary me-2"><i class="fa fa-lock"></i> Logout</button></a>
         </div>
 </header>
