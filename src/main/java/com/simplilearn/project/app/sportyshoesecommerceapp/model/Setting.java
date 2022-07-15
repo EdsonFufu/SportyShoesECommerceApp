@@ -1,7 +1,5 @@
 package com.simplilearn.project.app.sportyshoesecommerceapp.model;
 
-import com.simplilearn.project.app.sportyshoesecommerceapp.model.Category;
-import com.simplilearn.project.app.sportyshoesecommerceapp.model.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -21,31 +19,25 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @Setter
 @ToString
 @Entity
-@Table(name = "contact")
-public class Contact implements Serializable {
-    private static final long serialVersionUID = 1298110191965226340L;
+@Table(name = "setting")
+public class Setting implements Serializable {
+    private static final long serialVersionUID = -3150208476250523272L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String firstName;
+    private String companyName;
 
-    private String middleName;
+    private String accountNumber;
 
-    private String lastName;
+    private String accountName;
 
-    private String mobile;
+    private String bankName;
 
-    private String email;
+    private String address;
 
-    private String address1;
-
-    private String address2;
-
-    private String city;
-
-    private String country;
+    private double vat;
 
     @Temporal(TIMESTAMP)
     @CreationTimestamp
@@ -56,8 +48,5 @@ public class Contact implements Serializable {
     @Temporal(TIMESTAMP)
     @UpdateTimestamp
     private Date updatedDate;
-
-    @OneToOne(mappedBy = "contact")
-    private User user;
 
 }

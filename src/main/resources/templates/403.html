@@ -12,12 +12,18 @@
 <body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
     <div class="container" layout:fragment="content">
 
-        <div class="row">
-            <div class="col-md-12 card mb-5">
-                <div class="man-icon text-center"></div>
-                <h1 th:text="${errorCode}" class="text-center text-dark mt-4 title">404</h1>
-                <div th:utext="${errorMessage}" class="text-center mb-5 text-dark">Error java.lang.NullPointerException</div>
-                <div class="text-center mb-5"><a href="/" th:href="@{/index}"><button type="button" class="home-btn ">Back to Home Page</button></a></div>
+        <div class="notfound">
+            <div class="notfound-404">
+                <h1 th:text="${httpStatus}" class="text-center">404</h1>
+            </div>
+            <h2 th:text="${httpStatus.reasonPhrase}">Oops! Nothing was found</h2>
+            <p ><span th:utext="${errorMessage}">The page you are looking for might have been removed had its name changed or is temporarily unavailable.</span> </p>
+            <p> <a class="btn-outline-primary" href="" th:href="@{/index}">Return to homepage</a></p>
+            <div class="notfound-social">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-pinterest"></i></a>
+                <a href="#"><i class="fa fa-google-plus"></i></a>
             </div>
         </div>
 

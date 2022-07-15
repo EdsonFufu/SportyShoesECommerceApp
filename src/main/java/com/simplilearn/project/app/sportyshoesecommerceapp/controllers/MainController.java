@@ -1,9 +1,6 @@
 package com.simplilearn.project.app.sportyshoesecommerceapp.controllers;
 
-import com.simplilearn.project.app.sportyshoesecommerceapp.model.Cart;
-import com.simplilearn.project.app.sportyshoesecommerceapp.model.CartItem;
-import com.simplilearn.project.app.sportyshoesecommerceapp.model.Product;
-import com.simplilearn.project.app.sportyshoesecommerceapp.model.User;
+import com.simplilearn.project.app.sportyshoesecommerceapp.model.*;
 import com.simplilearn.project.app.sportyshoesecommerceapp.service.CartItemService;
 import com.simplilearn.project.app.sportyshoesecommerceapp.service.CartService;
 import com.simplilearn.project.app.sportyshoesecommerceapp.service.CustomUserDetailsService;
@@ -66,7 +63,27 @@ public class MainController {
             Cart cart = cartService.getCartSessionId(httpSession.getId());
             Double totalAmount = cart.getCartItemList().stream().map(cartItem -> cartItem.getPrice() * cartItem.getQuantity()).reduce(Double::sum).orElse(0.00);
             modelAndView.addObject("cartItems", cart.getCartItemList());
+            modelAndView.addObject("cart", cart);
             modelAndView.addObject("cartItemsTotal", totalAmount);
+        }
+        return modelAndView;
+    }
+
+    @PostMapping(value = {"/checkout"})
+    public ModelAndView checkout(@ModelAttribute("cart") Cart cart,ModelAndView modelAndView,HttpSession httpSession){
+        AuthUtils.isAuthenticated(SecurityContextHolder.getContext().getAuthentication(), modelAndView);
+        if(modelAndView.getModel().containsKey("error")){
+            return modelAndView;
+        }
+        User user = customUserDetailsService.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        modelAndView.setViewName("order");
+
+
+        if(!httpSession.isNew()){
+            cart = cartService.getCartSessionId(httpSession.getId());
+            Double totalAmount = cart.getCartItemList().stream().map(cartItem -> cartItem.getPrice() * cartItem.getQuantity()).reduce(Double::sum).orElse(0.00);
+//            Order order = Order.builder().user(user).cart(cart).tax(18.00).subTotal(totalAmount).total(18.00 * totalAmount).grandTotal(18.00 * totalAmount).sessionId(httpSession.getId()).build();
+            //modelAndView.addObject("order",Order.builder().build());
         }
         return modelAndView;
     }
@@ -141,18 +158,5 @@ public class MainController {
         }
 
         return modelAndView;
-    }
-
-    private String getErrorMessage(HttpServletRequest request, String key) {
-        Exception exception = (Exception) request.getSession().getAttribute(key);
-        String error = "";
-        if (exception instanceof BadCredentialsException) {
-            error = "Invalid username and password!";
-        } else if (exception instanceof LockedException) {
-            error = exception.getMessage();
-        } else {
-            error = "Invalid username and password!";
-        }
-        return error;
     }
 }

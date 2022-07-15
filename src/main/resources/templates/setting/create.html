@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html
+        xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{fragments/main}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spoty Shoe E-Commerce WebApp::Setting</title>
+</head>
+
+<body>
+<div class="container" layout:fragment="content">
+
+<section>
+    <!--Subsection: Login form-->
+    <section id="subsection-login">
+        <!--Subsection title-->
+        <h4 class="mt-5">Setting</h4>
+
+        <!--Description-->
+        <p>Add new Setting</p>
+
+        <!--Section: Demo-->
+        <section class="pb-4">
+            <div class="bg-white border rounded-5">
+
+                <div class="row">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${success}">
+                        <span th:text="${success}">Holy guacamole!</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${info}">
+                        <span th:text="${info}">Holy guacamole!</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${error}">
+                        <span th:text="${error}">Holy guacamole!</span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+
+                <section class="w-100 p-4 d-flex justify-content-center pb-4">
+                    <form style="width: 22rem;" th:action="@{/setting/save}" th:object="${setting}" enctype="multipart/form-data" method="post">
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form2Example1" class="form-control border" th:field="*{companyName}" />
+                            <label class="form-label" for="form2Example1">CompanyName</label>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form2Example12" class="form-control border" th:field="*{accountName}" />
+                            <label class="form-label" for="form2Example1">AccountName</label>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form2Example14" class="form-control border" th:field="*{accountNumber}" />
+                            <label class="form-label" for="form2Example1">AccountNumber</label>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form2Example15" class="form-control border" th:field="*{bankName}" />
+                            <label class="form-label" for="form2Example1">BankName</label>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form2Example16" class="form-control border" th:field="*{vat}" />
+                            <label class="form-label" for="form2Example1">VAT</label>
+                        </div>
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <textarea class="form-control border" id="form2Example6" rows="5"
+                                      name="address"
+                                      placeholder="Description" th:field="*{address}"
+                                      required="required"></textarea>
+                            <label class="form-label" for="form2Example6">Address</label>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4">Save</button>
+
+                    </form>
+                </section>
+
+
+            </div>
+        </section>
+
+    </section>
+</section>
+</div>
+
+</body>
+</html>

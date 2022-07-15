@@ -108,7 +108,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/","/index","/login","/register","/products","/logout","/uploads/**","/mdb/**").permitAll()
                 .antMatchers("/checkout","/products/**","/cart-item/**","/cart-detail").hasRole("USER")
-                .antMatchers("/product","/users","/category","/payment","/address","/order","/product/**","/category/**","/users/**","/address/**","/order/**","/payment/**","image/**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers("/product","/users","/category","/payment","/address","/order","/setting","/product/**","/category/**","/users/**","/address/**","/order/**","/payment/**","/image/**","/setting/**").hasRole("ADMIN").anyRequest().authenticated()
                 .and()
                 .formLogin(form -> form
                         .loginPage("/login").usernameParameter("username").passwordParameter("password")

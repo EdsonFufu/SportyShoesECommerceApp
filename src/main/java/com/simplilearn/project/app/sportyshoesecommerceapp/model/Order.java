@@ -1,7 +1,5 @@
 package com.simplilearn.project.app.sportyshoesecommerceapp.model;
 
-import com.simplilearn.project.app.sportyshoesecommerceapp.model.Category;
-import com.simplilearn.project.app.sportyshoesecommerceapp.model.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -10,7 +8,9 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
 
@@ -21,31 +21,25 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @Setter
 @ToString
 @Entity
-@Table(name = "contact")
-public class Contact implements Serializable {
-    private static final long serialVersionUID = 1298110191965226340L;
+@Table(name = "orders")
+public class Order implements Serializable {
+    private static final long serialVersionUID = 3210729248338811083L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private int id;
 
-    private String firstName;
+    private String sessionId;
 
-    private String middleName;
+    private boolean status;
 
-    private String lastName;
+    private double subTotal;
 
-    private String mobile;
+    private double tax;
 
-    private String email;
+    private double total;
 
-    private String address1;
-
-    private String address2;
-
-    private String city;
-
-    private String country;
+    private double grandTotal;
 
     @Temporal(TIMESTAMP)
     @CreationTimestamp
@@ -57,7 +51,18 @@ public class Contact implements Serializable {
     @UpdateTimestamp
     private Date updatedDate;
 
-    @OneToOne(mappedBy = "contact")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", referencedColumnName = "id")
+    @ToString.Exclude
     private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cartId", referencedColumnName = "id")
+    @ToString.Exclude
+    private Cart cart;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "paymentId")
+    private Payment payment;
 
 }
