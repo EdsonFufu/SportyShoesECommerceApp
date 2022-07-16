@@ -39,6 +39,8 @@ public class Setting implements Serializable {
 
     private double vat;
 
+    private double shipping;
+
     @Temporal(TIMESTAMP)
     @CreationTimestamp
     @CreatedDate

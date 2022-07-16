@@ -107,58 +107,49 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/","/index","/login","/register","/products","/logout","/uploads/**","/mdb/**").permitAll()
-                .antMatchers("/checkout","/products/**","/cart-item/**","/cart-detail").hasRole("USER")
-                .antMatchers("/product","/users","/category","/payment","/address","/order","/setting","/product/**","/category/**","/users/**","/address/**","/order/**","/payment/**","/image/**","/setting/**").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers("/checkout","/products/**","/cart-item/**","/cart-detail","/payment").hasRole("USER")
+                .antMatchers("/product","/users","/category","/transaction","/address","/order","/setting","/product/**","/category/**","/users/**","/address/**","/order/**","/payment/**","/image/**","/setting/**").hasRole("ADMIN").anyRequest().authenticated()
                 .and()
                 .formLogin(form -> form
                         .loginPage("/login").usernameParameter("username").passwordParameter("password")
-                        .successHandler(new AuthenticationSuccessHandler() {
+                        .successHandler((request, response, authentication) -> {
+                            // run custom logics upon successful login
 
-                            @Override
-                            public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                                                Authentication authentication) throws IOException, ServletException {
-                                // run custom logics upon successful login
+                            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+                            String username = userDetails.getUsername();
 
-                                UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-                                String username = userDetails.getUsername();
+                            System.out.println("The user " + username + " has logged in.");
 
-                                System.out.println("The user " + username + " has logged in.");
-
-                                HttpSession session = request.getSession();
-                                session.setAttribute("username",username);
-                                session.setAttribute("totalItem",0);
-                                User userInfo = customUserDetailsService.getUserByUsername(username);
-                                System.out.println(userInfo);
-                                Cart cart = Cart.builder()
-                                        .user(userInfo)
-                                        .sessionId(session.getId())
-                                        .status(false)
-                                        .fullname(userInfo.getName())
-                                        //.mobile(userInfo.getContact().getMobile())
-                                        .email(userInfo.getEmail())
-                                        //.address1(userInfo.getContact().getAddress1())
-                                        //.address2(userInfo.getContact().getAddress2())
-                                        //.city(userInfo.getContact().getCity())
-                                        //.country(userInfo.getContact().getCountry())
-                                        .build();
-                                cartService.save(cart);
+                            HttpSession session = request.getSession();
+                            session.setAttribute("username",username);
+                            session.setAttribute("totalItem",0);
+                            User userInfo = customUserDetailsService.getUserByUsername(username);
+                            System.out.println(userInfo);
+                            Cart cart = Cart.builder()
+                                    .user(userInfo)
+                                    .sessionId(session.getId())
+                                    .status(false)
+                                    .fullname(userInfo.getName())
+                                    //.mobile(userInfo.getContact().getMobile())
+                                    .email(userInfo.getEmail())
+                                    //.address1(userInfo.getContact().getAddress1())
+                                    //.address2(userInfo.getContact().getAddress2())
+                                    //.city(userInfo.getContact().getCity())
+                                    //.country(userInfo.getContact().getCountry())
+                                    .build();
+                            cartService.save(cart);
 
 
-                                response.sendRedirect(request.getContextPath());
-                            }
+                            response.sendRedirect(request.getContextPath());
                         })
-                        .failureHandler(new AuthenticationFailureHandler() {
+                        .failureHandler((request, response, exception) -> {
+                            String email = request.getParameter("username");
+                            String error = exception.getMessage();
+                            log.info("A failed login attempt with email: "
+                                    + email + ". Reason: " + error);
 
-                            @Override
-                            public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-                                String email = request.getParameter("username");
-                                String error = exception.getMessage();
-                                log.info("A failed login attempt with email: "
-                                        + email + ". Reason: " + error);
-
-                                String redirectUrl = request.getContextPath() + "/login?error=true";
-                                response.sendRedirect(redirectUrl);
-                            }
+                            String redirectUrl = request.getContextPath() + "/login?error=true";
+                            response.sendRedirect(redirectUrl);
                         })
                         .failureUrl("/login?error=true")
                         .permitAll()

@@ -8,6 +8,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
@@ -35,6 +37,7 @@ public class Payment implements Serializable {
 
     private String transactionId;
 
+
     @Temporal(TIMESTAMP)
     @CreationTimestamp
     @CreatedDate
@@ -49,5 +52,9 @@ public class Payment implements Serializable {
     @JoinColumn(name = "orderId", referencedColumnName = "id")
     @ToString.Exclude
     private Order order;
+
+    public String getTransactionDate(){
+        return new SimpleDateFormat("MMM dd,yyyy").format(createdDate).toUpperCase();
+    }
 
 }

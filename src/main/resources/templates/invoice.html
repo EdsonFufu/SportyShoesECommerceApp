@@ -35,11 +35,11 @@
                                 <div class="row gutters">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                                         <a th:href="@{/}" class="invoice-logo">
-                                            <img th:src="@{shoe-logo.png}">
+                                            <img th:src="@{/images/shoe-logo.png}">
                                         </a>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <address class="text-right">
+                                        <address class="text-right" th:text="${setting.getAddress()}">
                                             Maxwell admin Inc, 45 NorthWest Street.<br>
                                             Sunrise Blvd, San Francisco.<br>
                                             00000 00000
@@ -51,17 +51,16 @@
                                 <div class="row gutters">
                                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                                         <div class="invoice-details">
-                                            <address>
-                                                Alex Maxwell<br>
-                                                150-600 Church Street, Florida, USA
+                                            <address th:utext="${contact.getAddress1()}">
+
                                             </address>
                                         </div>
                                     </div>
                                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                                         <div class="invoice-details">
                                             <div class="invoice-num">
-                                                <div>Invoice - #009</div>
-                                                <div>January 10th 2020</div>
+                                                <div th:text="${order.getOrderNumber()}"></div>
+                                                <div th:text="${order.getPayment().getTransactionDate()}">January 10th 2020</div>
                                             </div>
                                         </div>
                                     </div>
@@ -83,38 +82,16 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
+                                                <tr th:each="item:${order.getCart().getCartItemList()}">
                                                     <td>
-                                                        Wordpress Template
-                                                        <p class="m-0 text-muted">
+                                                        <span th:text="${item.getProduct().getName()}">Wordpress Template</span>
+                                                        <p class="m-0 text-muted" th:text="${item.getProduct().getCategory().getName()}">
                                                             Reference site about Lorem Ipsum, giving information on its origins.
                                                         </p>
                                                     </td>
-                                                    <td>#50000981</td>
-                                                    <td>9</td>
-                                                    <td>$5000.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Maxwell Admin Template
-                                                        <p class="m-0 text-muted">
-                                                            As well as a random Lipsum generator.
-                                                        </p>
-                                                    </td>
-                                                    <td>#50000126</td>
-                                                    <td>5</td>
-                                                    <td>$100.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Unify Admin Template
-                                                        <p class="m-0 text-muted">
-                                                            Lorem ipsum has become the industry standard.
-                                                        </p>
-                                                    </td>
-                                                    <td>#50000821</td>
-                                                    <td>6</td>
-                                                    <td>$49.99</td>
+                                                    <td th:text="${'#' + item.getProduct().getNumber()}">#50000981</td>
+                                                    <td th:text="${item.getQuantity()}">9</td>
+                                                    <td th:text="${item.getQuantity() * item.getPrice()}">$5000.00</td>
                                                 </tr>
                                                 <tr>
                                                     <td>&nbsp;</td>
@@ -128,11 +105,11 @@
                                                     </td>
                                                     <td>
                                                         <p>
-                                                            $5000.00<br>
-                                                            $100.00<br>
-                                                            $49.00<br>
+                                                            <span th:text="${order.getSubTotal()}">$5000.00</span><br>
+                                                            <span th:text="${order.getShipping()}">$100.00</span><br>
+                                                            <span th:text="${order.getTax()}">$49.00</span><br>
                                                         </p>
-                                                        <h5 class="text-success"><strong>$5150.99</strong></h5>
+                                                        <h5 class="text-success"><strong th:text="${order.getGrandTotal()}">$5150.99</strong></h5>
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -143,7 +120,7 @@
                                 <!-- Row end -->
                             </div>
                             <div class="invoice-footer">
-                                Thank you for your Business.
+                                Thank you for doing Business with <b>Sporty Shoe Store</b>.
                             </div>
                         </div>
                     </div>

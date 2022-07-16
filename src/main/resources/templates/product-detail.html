@@ -15,7 +15,7 @@
                         <div class="col-md-6 float-left" >
                             <div class="pro-img-details mySlides" th:each="image:${product.getSortedImages()}">
                                 <div class="numbertext" th:text="${(imageStat.index + 1) + ' / ' + imageStat.size}">1 / 4</div>
-                                <img th:width="${'100%'}" th:src="@{${image.getPath()}}" th:alt="${image.getName()}" />
+                                <img th:width="${'80%'}" th:src="@{${image.getPath()}}" th:alt="${image.getName()}" />
                             </div>
                             <div class="pro-img-list d-flex flex-md-row">
                                 <a href="#" th:each="image:${product.getSortedImages()}">

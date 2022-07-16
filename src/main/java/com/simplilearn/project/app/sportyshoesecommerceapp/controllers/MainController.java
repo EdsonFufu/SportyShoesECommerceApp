@@ -1,10 +1,10 @@
 package com.simplilearn.project.app.sportyshoesecommerceapp.controllers;
 
+import com.simplilearn.project.app.sportyshoesecommerceapp.dto.PaymentDTO;
 import com.simplilearn.project.app.sportyshoesecommerceapp.model.*;
-import com.simplilearn.project.app.sportyshoesecommerceapp.service.CartItemService;
-import com.simplilearn.project.app.sportyshoesecommerceapp.service.CartService;
-import com.simplilearn.project.app.sportyshoesecommerceapp.service.CustomUserDetailsService;
-import com.simplilearn.project.app.sportyshoesecommerceapp.service.ProductService;
+import com.simplilearn.project.app.sportyshoesecommerceapp.repository.ContactRepository;
+import com.simplilearn.project.app.sportyshoesecommerceapp.repository.PaymentRepository;
+import com.simplilearn.project.app.sportyshoesecommerceapp.service.*;
 import com.simplilearn.project.app.sportyshoesecommerceapp.utils.AuthUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.ListUtils;
@@ -20,8 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
+import java.util.Queue;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -33,7 +36,17 @@ public class MainController {
     @Autowired private CartItemService cartItemService;
     @Autowired private CartService cartService;
 
+    @Autowired private SettingService settingService;
+
+    @Autowired private UserService userService;
+
     @Autowired private CustomUserDetailsService customUserDetailsService;
+
+    @Autowired private ContactRepository contactRepository;
+
+    @Autowired private PaymentRepository paymentRepository;
+
+    @Autowired private OrderService orderService;
 
     @GetMapping(value = {"/","/index","/welcome"})
     public ModelAndView index(ModelAndView modelAndView){
@@ -78,12 +91,80 @@ public class MainController {
         User user = customUserDetailsService.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         modelAndView.setViewName("order");
 
+        Setting setting = settingService.findAll().stream().limit(1).findFirst().orElse(null);
 
         if(!httpSession.isNew()){
-            cart = cartService.getCartSessionId(httpSession.getId());
-            Double totalAmount = cart.getCartItemList().stream().map(cartItem -> cartItem.getPrice() * cartItem.getQuantity()).reduce(Double::sum).orElse(0.00);
-//            Order order = Order.builder().user(user).cart(cart).tax(18.00).subTotal(totalAmount).total(18.00 * totalAmount).grandTotal(18.00 * totalAmount).sessionId(httpSession.getId()).build();
-            //modelAndView.addObject("order",Order.builder().build());
+            if(setting != null) {
+                cart = cartService.getCartSessionId(httpSession.getId());
+                double totalAmount = cart.getCartItemList().stream().map(cartItem -> cartItem.getPrice() * cartItem.getQuantity()).reduce(Double::sum).orElse(0.00);
+                int totalItems = cart.getCartItemList().stream().map(CartItem::getQuantity).reduce(0,Integer::sum);
+                Order order = Order.builder().user(user).cart(cart).tax(setting.getVat()).subTotal(totalAmount).total(setting.getVat() * totalAmount).grandTotal(setting.getVat() * totalAmount).sessionId(httpSession.getId()).build();
+                modelAndView.addObject("order", order);
+                modelAndView.addObject("shipping", setting.getShipping());
+                modelAndView.addObject("quatity", totalItems);
+                modelAndView.addObject("payment", new PaymentDTO());
+            }
+        }
+        return modelAndView;
+    }
+
+    @PostMapping(value = {"/payment"})
+    public ModelAndView payment(@ModelAttribute("payment") PaymentDTO paymentDTO,ModelAndView modelAndView,HttpSession httpSession){
+        AuthUtils.isAuthenticated(SecurityContextHolder.getContext().getAuthentication(), modelAndView);
+        if(modelAndView.getModel().containsKey("error")){
+            return modelAndView;
+        }
+        User user = customUserDetailsService.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+
+
+
+
+        if(!httpSession.isNew()){
+            Setting setting = settingService.findAll().stream().limit(1).findFirst().orElse(null);
+            if(setting != null) {
+
+                Contact contact = Contact.builder()
+                        .firstName(paymentDTO.getFirstName()).middleName(paymentDTO.getMiddleName()).lastName(paymentDTO.getLastName())
+                        .mobile(paymentDTO.getMobile()).email(paymentDTO.getEmail()).city(paymentDTO.getCity()).country(paymentDTO.getCountry())
+                        .address1(paymentDTO.getAddress())
+                        .build();
+                Contact contactSaved = contactRepository.save(contact);
+                user.setContact(contactSaved);
+
+                User withNewContact = userService.save(user);
+
+                Cart cart = cartService.getCartSessionId(httpSession.getId());
+
+
+                double totalAmount = cart.getCartItemList().stream().map(cartItem -> cartItem.getPrice() * cartItem.getQuantity()).reduce(Double::sum).orElse(0.00);
+
+                Order order = Order.builder().user(withNewContact).cart(cart).tax(setting.getVat()/100 * totalAmount).subTotal(totalAmount).total((setting.getVat()/100 * totalAmount) + totalAmount).grandTotal((setting.getVat()/100 * totalAmount) + totalAmount + setting.getShipping()).shipping(setting.getShipping()).sessionId(httpSession.getId()).build();
+
+                Order savedOrder = orderService.save(order);
+
+                //Deduct Order amount to the API based on the chosen payment method
+
+                Payment payment = Payment.builder()
+                        .paymentAmount(paymentDTO.getPaymentAmount())
+                        .paymentMethod(paymentDTO.getPaymentMethod())
+                        .paymentStatus("SUCCESS")
+                        .transactionId("99" + String.format("05%d",order.getId()) + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HHmmssSSS")))
+                        .order(savedOrder)
+                        .build();
+
+                Payment savedPayment = paymentRepository.save(payment);
+                if(savedPayment != null) {
+                    httpSession.setAttribute("totalItem",0);
+                    savedOrder.setPayment(savedPayment);
+
+                    modelAndView.addObject("order", savedOrder);
+                    modelAndView.addObject("contact", withNewContact.getContact());
+                    modelAndView.addObject("setting", setting);
+                    modelAndView.setViewName("invoice");
+                }else {
+                    modelAndView.setViewName("redirect:/cart-detail");
+                }
+            }
         }
         return modelAndView;
     }

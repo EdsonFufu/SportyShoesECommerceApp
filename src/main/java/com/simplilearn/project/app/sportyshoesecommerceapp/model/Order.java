@@ -27,7 +27,7 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private int id;
+    private long id;
 
     private String sessionId;
 
@@ -35,7 +35,11 @@ public class Order implements Serializable {
 
     private double subTotal;
 
+    private double quatity;
+
     private double tax;
+
+    private double shipping;
 
     private double total;
 
@@ -64,5 +68,9 @@ public class Order implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "paymentId")
     private Payment payment;
+
+    public String getOrderNumber(){
+        return String.format("#05%d",this.getId());
+    }
 
 }
